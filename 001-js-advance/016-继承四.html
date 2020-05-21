@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>016-继承四.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function Person(name,age){
+		console.log('hahah')
+		this.name = name
+		this.age = age
+	}
+	Object.defineProperties(Person.prototype,{
+		showName:{
+			value:function(){
+				console.log('I am '+this.name)
+			},
+			enumerable:false
+		}
+	})
+	Person.prototype.showAge= function(){
+		console.log('I am '+this.age + ' years old ')
+	}
+
+	function Student(name,age,major){
+		//属性继承
+		Person.call(this,name,age)
+		this.major = major
+	}
+
+	
+	
+
+	Student.prototype = Object.create(Person.prototype)
+	Student.prototype.constructor = Student
+	console.log('1:::',Student.prototype)
+
+
+	Student.prototype.showMajor = function(){
+		console.log('I am from '+this.major)
+	}
+	var s1 = new Student('leo',18,'computer')
+
+	console.log(s1)
+	s1.showName()
+	s1.showAge()
+	s1.showMajor()
+
+
+	var p1 = new Person('Tom',20)
+	console.log(p1)
+	p1.showName()
+	p1.showAge()
+	p1.showMajor()
+</script>
+</html>

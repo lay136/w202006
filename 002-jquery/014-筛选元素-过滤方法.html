@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>014-筛选元素-过滤方法.html</title>
+</head>
+<body>
+	<div>01</div>
+	<div id="box2">02</div>
+	<div>03</div>
+	<div>04</div>
+	<div>05</div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		// console.log($('div:eq(1)'));
+		// console.log($('div').eq(1));
+		console.log($('#box2').siblings());
+	});
+</script>
+</html>

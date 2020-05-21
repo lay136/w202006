@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>005-jQuery对象.html</title>
+</head>
+<body>
+	<div id="div1">01</div>
+	<div id="div2">02</div>
+	<div id="div3">03</div>
+	<div id="div4">04</div>
+	<div id="div5">05</div>
+	<div id="div6">06</div>
+	<div id="div7">07</div>
+	<div id="div8">08</div>
+	<div id="div9">09</div>
+	<div id="div10">10</div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		// console.log($('div'));
+		// console.log([1,2,3,4,5,6]);
+		// console.log($('div')[1]);
+		// var oDiv = document.getElementById('div2');
+		// console.log($(oDiv));
+		console.log($('div').get(9));
+	});
+</script>
+</html>

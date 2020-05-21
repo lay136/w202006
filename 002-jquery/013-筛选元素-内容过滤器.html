@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>013-筛选元素-内容过滤器.html</title>
+	<style>
+		*{
+			margin: 0;
+			 padding: 0; 
+		}
+		div{
+			width: 100px;
+			height: 100px;
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div>div3</div>
+	<div>
+		<p>我是段落</p>
+	</div>
+	<div><span>我是span</span></div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		console.log($('div'));
+		console.log($('div:empty'));
+		console.log($('div:parent'));
+		console.log($('div:contains("我是")'));
+		console.log($('div').has('p'));
+		console.log($('div').has('span'));
+		console.log($('div').has('ul'));
+	});
+</script>
+</html>

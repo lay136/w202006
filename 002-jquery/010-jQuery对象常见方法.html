@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>010-jQuery对象常见方法.html</title>
+</head>
+<body>
+	<div class="div1">div01</div>
+	<div class="div2" data-kuazhu="kuazhu-test">div02</div>
+	<div class="div3">div03</div>
+	<div class="div4">div04</div>
+	<div class="div5">div05</div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		console.log($('div'));
+		// console.log($('div').index());
+		// console.log($('div').index(document.querySelector('.div3')));
+		// console.log($('div').index($('.div5')));
+		/*
+		$.each($('div'),function(index,value){
+			console.log('1:::',index,value);
+			console.log('1:::this',this);
+		});
+		$('div').each(function(index,value){
+			console.log('2::',index,value);
+			console.log('2:::this',this);
+		});
+		*/
+		/*
+		console.log($('.div2').data());
+		console.log($('.div2').data('kuazhu'));
+		console.log($('.div2').data('kuazhu','kuazhu-content-test'));
+		console.log($('.div2').data('kuazhu'));
+		*/
+
+		console.log($('div').is($('.div5')));
+		console.log($('div').is($('p')));
+
+	});
+</script>
+</html>

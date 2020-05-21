@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>008-属性的定义-定义多个属性.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function Person(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	
+
+	var p1 = new Person('Tom',18);
+
+	/*
+
+	Object.defineProperty(p1,'LEGS',{
+		value:2,
+		enumerable:true,
+		writable:true,
+		configurable:true
+	})
+	Object.defineProperty(p1,'EYES',{
+		value:2,
+		enumerable:true,
+		writable:true,
+		configurable:true
+	})
+	Object.defineProperty(p1,'HANDS',{
+		value:2,
+		enumerable:true,
+		writable:true,
+		configurable:true
+	})
+	p1.LEGS = 4
+
+	for(attr in p1){
+		console.log(attr)
+	}
+
+	console.log(p1)
+	*/
+
+	Object.defineProperties(p1,{
+		LEGS:{
+			value:2,
+			enumerable:true,
+			writable:true,
+			configurable:true
+		},
+		EYES:{
+			value:2,
+			enumerable:true,
+			writable:true,
+			configurable:true
+		},
+		HANDS:{
+			value:2,
+			enumerable:true,
+			writable:true,
+			configurable:true
+		}
+	})
+
+	for(attr in p1){
+		console.log(attr)
+	}
+
+	console.log(p1)
+		
+
+</script>
+</html>

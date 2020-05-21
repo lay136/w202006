@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>008-$的静态方法-map.html</title>
+</head>
+<body>
+	
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		var arr = [1,56,78,945,141,256,31,2];
+		var likeArr = {0:'aa',1:'bb',2:'cc',length:3};
+
+		/*
+		var newArr = arr.map(function(value,index){
+			console.log(value,index)
+			return value;
+		});
+		console.log(newArr === arr);
+		
+		var res = $.map(arr,function(value,index){
+			console.log(index,value);
+			return value;
+		})
+		console.log(res === arr);
+		*/
+
+
+		/*
+		likeArr.map(function(value,index){
+			console.log(value,index)
+			return value;
+		});
+		*/
+		var res = $.map(likeArr,function(value,index){
+			console.log(index,value);
+			return value;
+		})
+		console.log(res === likeArr);
+		console.log(res)
+	});
+</script>
+</html>

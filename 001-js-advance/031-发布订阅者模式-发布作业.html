@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>031-发布订阅者模式-发布作业.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	(function(w){
+		function Teacher(name){
+			this.name = name;
+			//定义一个数组用来保存学生
+			this.students = [];
+		}
+		Teacher.prototype = {
+			constructor:Teacher,
+			register:function(student){
+				this.students.push(student)
+			},
+			publish:function(msg){
+				for(var i=0;i<this.students.length;i++){
+					this.students[i].listen(msg)
+				}
+			}
+		}
+
+		w.Teacher = Teacher
+	})(window);
+
+	(function(w){
+		function Student(name,teacher){
+			this.name = name;
+			//将学生添加到老师的数组中
+			// teacher.students.push(this)
+			teacher.register(this)
+		}
+		Student.prototype = {
+			constructor:Student,
+			listen:function(msg){
+				console.log(this.name + ' got msg ' + msg)
+			}
+		}
+
+		w.Student = Student
+	})(window);
+
+	var t1 = new Teacher('陈老师')
+	var s1 = new Student('张三',t1)
+	var s2 = new Student('李四',t1)
+	var s2 = new Student('王五',t1)
+	// console.log(t1)
+	// console.log(s1)
+	t1.publish('everyone dosomething .....')
+</script>
+</html>

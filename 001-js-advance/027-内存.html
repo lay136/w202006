@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>027-内存.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function fn(){
+		var a = 1;
+		add = function(){
+			a++
+		}
+		return function(){
+			console.log(a)
+		}
+	}
+	var result = fn()
+	result()
+	add()
+	result()
+</script>
+</html>

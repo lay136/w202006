@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>007-属性的定义-定义单个属性.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function Person(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	Person.prototype.showName = function(){
+		console.log('I am '+ this.name)
+	}
+	Person.prototype.showAge = function(){
+		console.log('I am'+ this.age +'years old')
+	}
+	Person.prototype.LEGS = 2
+
+	var p1 = new Person('Tom',18);
+
+	/*
+	p1.sex = 'famale';
+	p1.sex = 'male';
+	p1.__proto__ = 'bac'
+	console.log(p1)
+	for(attr in p1){
+		console.log('attr:::',attr)
+	}
+	*/
+
+	/*
+	Object.defineProperty(p1,'sex',{
+		value:'male',
+		writable:true,
+		enumerable:true,
+		configurable:true
+	})
+	p1.sex = 'famale'
+	delete p1.sex
+	console.log(p1)
+	for(attr in p1){
+		console.log('attr:::',attr)
+	}	
+	*/
+	Object.defineProperty(p1,'sex',{
+		value:'male',
+		writable:true,
+		enumerable:true,
+		configurable:true
+	})
+	Object.defineProperty(p1,'sex',{
+		value:'male',
+		writable:false,
+		enumerable:false,
+		configurable:true
+	})
+	// delete p1.sex
+	p1.sex = 'famale'
+	console.log(p1)
+	for(attr in p1){
+		console.log('attr:::',attr)
+	}
+		
+
+</script>
+</html>

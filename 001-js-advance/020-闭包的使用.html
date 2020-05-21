@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>020-闭包的使用.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function fn(){
+		var a = 1
+		add = function(){
+			a++
+		}
+		return function fn2(){
+			console.log(a)
+		}
+	}
+	var result = fn()
+	// console.log(result)
+	result()
+	add()
+	result()
+	// console.log(a)
+</script>
+</html>

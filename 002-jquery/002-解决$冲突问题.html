@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>002-解决$冲突问题.html</title>
+</head>
+<body>
+	
+</body>
+
+<script>
+	(function(w){
+		function $(){
+			console.log('test $');
+		}
+		w.$ = $;
+	})(window);
+</script>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	var kz = jQuery.noConflict();
+	// console.log($)
+	jQuery(function(){
+		console.log('hha')
+	});
+	kz(function(){
+		console.log('hello jQuery')
+	})
+</script>
+</html>

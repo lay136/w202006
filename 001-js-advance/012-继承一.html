@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>012-继承一.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function Person(name,age){
+		// console.log(this)
+		this.name = name
+		this.age = age
+	}
+	Person.prototype.showName = function(){
+		console.log('I am '+this.name)
+	}
+	Person.prototype.showAge= function(){
+		console.log('I am '+this.age + ' years old ')
+	}
+
+	function Student(name,age,major){
+		// console.log(this)
+		/*
+		this.name = name 
+		this.age = age
+		*/
+		//属性继承
+		Person.call(this,name,age)
+		// Person.apply(this,[name,age])
+		// Person.bind(this)(name,age)
+		this.major = major
+	}
+	/*
+	Student.prototype.showName = function(){
+		console.log('I am '+this.name)
+	}
+	Student.prototype.showAge= function(){
+		console.log('I am '+this.age + ' years old ')
+	}
+	*/
+	Student.prototype = Person.prototype
+	Student.prototype.showMajor = function(){
+		console.log('I am from '+this.major)
+	}
+	var s1 = new Student('leo',18,'computer')
+
+	console.log(s1)
+	s1.showName()
+	s1.showAge()
+	s1.showMajor()
+
+
+	var p1 = new Person('Tom',20)
+	console.log(p1)
+	p1.showName()
+	p1.showAge()
+	p1.showMajor()
+</script>
+</html>

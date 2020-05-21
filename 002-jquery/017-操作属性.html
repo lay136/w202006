@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>017-操作属性.html</title>
+</head>
+<body>
+	<input type="text" name="aaa" value="aaaaa">
+	<input type="text" name="bbb" value="bbbbb">
+	<input type="checkbox" checked="checked">
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		// console.log($('input').attr('name'));
+		// console.log($('input').eq(1).attr('name'));
+		// console.log($('input').prop('name'));
+		// console.log($('input:eq(1)').prop('name'));
+
+		// console.log($('input').eq(2).attr('checked'));
+		// console.log($('input').eq(2).prop('checked'));
+
+		// console.log($('input').attr('value','cccccc'));
+		// console.log($('input').prop('value','cccccc'));
+		// console.log($('input').eq(1).attr('name','dddd'));
+		// console.log($('input').eq(2).attr('checked',false));
+		console.log($('input').eq(2).prop('checked',true));
+
+
+		// console.log($('input').removeAttr('name'));
+		console.log($('input').removeProp('name'));
+	});
+</script>
+</html>

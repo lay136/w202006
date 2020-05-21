@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>015-筛选元素-可见性过滤.html</title>
+	<style>
+		*{
+			margin: 0;
+			 padding: 0; 
+		}
+		div{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			margin-top: 10px;
+		}
+		div:nth-child(2){
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<input type="hidden">
+	<input type="text">
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		console.log($('input'));
+		console.log($('input:hidden'));
+		console.log($('div:visible'))
+	});
+</script>
+</html>

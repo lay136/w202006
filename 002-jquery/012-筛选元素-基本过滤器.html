@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>012-筛选元素-基本过滤器.html</title>
+</head>
+<body>
+	<div>div01</div>
+	<div>div02</div>
+	<div>div03</div>
+	<div>div04</div>
+	<div>div05</div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		console.log($('div:nth-child(2)'));
+		console.log($('div:eq(1)'));
+		console.log($('div:eq(3)'));
+		console.log($('div:eq(-1)'));
+	});
+</script>
+</html>

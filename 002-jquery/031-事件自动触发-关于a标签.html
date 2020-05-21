@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>031-事件自动触发-关于a标签.html</title>
+</head>
+<body>
+	<p>
+		我是p
+		<a href="https://www.kuazhu.com">
+			跳转kuahzu
+			<span>我是span</span>
+		</a>
+	</p>
+	
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		$('a').on('click',function(){
+			console.log('a click...');
+		})
+		$('p').on('click',function(){
+			console.log('p click');
+		});
+
+		// $('a').trigger('click');
+		$('span').trigger('click');
+	});
+</script>
+</html>

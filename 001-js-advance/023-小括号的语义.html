@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>023-小括号的语义.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*
+	function show(){
+		console.log('hah')
+	}
+	show()
+	
+	function (){
+		console.log('hahah')
+	}()
+	*/
+
+	/*
+	if(true){
+		console.log(123)
+	}
+	for(var i = 0;i<5;i++){
+		console.log(i)
+	}
+	var str = '1' + (2 + 3) + '4'
+	console.log(str)//154
+
+	function show(name){
+		console.log(name)
+	}
+	show('Tom')
+	*/
+	/*
+	(function (num){
+		console.log(num)
+	})(123)
+	*/
+
+	/*
+	(function(){})()
+
+	;(function(){
+		console.log(123)
+	})()
+	;(function(){
+		console.log(456)
+	})()
+	*/
+	!(function(){
+		console.log(123)
+	})()
+	!(function(){
+		console.log(456)
+	})()
+</script>
+</html>

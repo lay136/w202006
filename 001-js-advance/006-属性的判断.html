@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>006-属性的判断.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function Person(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	Person.prototype.showName = function(){
+		console.log('I am '+ this.name)
+	}
+	Person.prototype.showAge = function(){
+		console.log('I am'+ this.age +'years old')
+	}
+	Person.prototype.LEGS = 2
+
+	var p1 = new Person('Tom',18);
+
+	/*
+	if(p1.name){
+		console.log('has something ....')
+	}else{
+		console.log('nothing ....')
+	}
+	*/
+	// console.log(p1)
+	// console.log(p1.name)
+	// console.log(p1.age)
+	// console.log(p1.LEGS)
+
+	// console.log(Object.prototype)
+	// console.log(p1)
+	// console.log(p1.hasOwnProperty('name'))
+	// console.log(p1.hasOwnProperty('age'))
+	// console.log(p1.hasOwnProperty('LEGS'))
+
+	// console.log('name' in p1)
+	// console.log('age' in p1)
+	// console.log('LEGS' in p1)
+
+	// 判断某个属性只在原型上不在实例上
+	function isInProperty(attr,obj){
+		return !obj.hasOwnProperty(attr) &&  (attr in obj)
+	}
+	console.log(isInProperty('name',p1))
+	console.log(isInProperty('age',p1))
+	console.log(isInProperty('LEGS',p1))
+
+</script>
+</html>

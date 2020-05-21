@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>009-jQuery其他静态方法.html</title>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	var name = 'tom';
+	$(function(){
+		var str = ' ab c ';
+		// console.log(str);
+		// console.log($.trim(str));
+		var obj = {
+			name:"Tom"
+		}
+		function fn(){
+			console.log('hahha');
+		}
+		// console.log(window);
+		// console.log($.isWindow(obj));
+		// console.log($.isWindow(window));
+		// console.log($.isArray([1,2,3]));
+		// var aDiv = document.getElementsByTagName('div');
+		// console.log($.isArray({0:'aa',1:'bb',length:2}));
+		// console.log($.isArray(aDiv))
+
+		// console.log($.isFunction(obj));
+		// console.log($.isFunction(fn));
+
+
+		// var obj1 = {name:"Tom",age:18};
+		// var obj2 = {name:"leo"};
+		// var obj3 = $.extend(obj1,obj2);
+		// console.log('obj1',obj1);
+		// console.log('obj2',obj2);
+		// console.log('obj3',obj3);
+		// console.log(obj1 === obj3);
+		// var obj4 = $.extend({},obj1,obj2);
+		// console.log('obj4',obj4);
+
+		function show(){
+			console.log(this);
+		}
+		var obj5 = {name:'Petter',age:22};
+		// show();
+		// show.call(obj5);
+		var res = show.bind(obj5);
+		// res()
+		var result = $.proxy(show,obj5);
+		// console.log(result)
+		result()
+	});
+</script>
+</html>

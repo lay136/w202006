@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>005-属性的删除.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function Person(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	Person.prototype.showName = function(){
+		console.log('I am '+ this.name)
+	}
+	Person.prototype.showAge = function(){
+		console.log('I am'+ this.age +'years old')
+	}
+	Person.prototype.LEGS = 2
+
+	var p1 = new Person('Tom',18);
+	p1.sex = 'male'
+
+	// p1.sex = null;
+	console.log('1:::',delete p1.sex);
+	console.log('2:::',delete p1.MOUTH);
+	console.log('5:::',delete p1.LEGS)
+	console.log('6:::',delete Person.prototype.LEGS)
+
+	console.log('3:::',p1)
+	console.log('4:::',p1.LEGS)
+
+	var p2 = new Person('Leo',88)
+	console.log('7:::',p2.LEGS)
+	
+</script>
+</html>

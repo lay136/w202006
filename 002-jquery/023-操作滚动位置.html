@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>023-操作滚动位置.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.father{
+			position: relative;
+			width: 400px;
+			height: 400px;
+			margin: 20px auto;
+			border: 1px solid #000;
+			overflow: auto;
+		}
+		.son{
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 3000px;
+			height: 3000px;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<button>按钮</button>
+	<div class="father">
+		<div class="son"></div>
+	</div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		$('button').on('click',function(){
+			console.log($('.father').scrollTop());
+			console.log($('.father').scrollLeft());
+			console.log($('.father').scrollTop(200));
+			console.log($('.father').scrollLeft(200));
+		})
+		
+	});
+</script>
+</html>

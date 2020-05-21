@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>025-事件的移除.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			width: 100px;
+			height: 100px;
+			margin: 10px;
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<button>移除事件</button>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		function fn(){
+			console.log('fn click')
+		}
+		$('div').click(function(){
+			console.log('click1...')
+		});
+		$('div').click(fn);
+		$('div').on('click',function(){
+			console.log('click3 ...')
+		});
+		$('div').mouseover(function(){
+			console.log('mouseover ...')
+		});
+		$('button').on('click',function(){
+			// $('div').off();
+			// $('div').off('click');
+			$('div').off('click',fn);
+		})
+	});
+</script>
+</html>

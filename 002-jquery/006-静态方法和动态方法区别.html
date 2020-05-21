@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>006-静态方法和动态方法区别.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//由构造函数自身调用的方法————静态方法
+	//由构造函数生成的实例调用的方法————动态方法
+	var date = Date.now();
+	var num = Math.random();
+	var arr = new Array(1,2,3);
+	// console.log(arr);
+	function Person (name){
+		this.name = name;
+	}
+	Person.prototype.showName = function(){
+		console.log('I am  '+this.name)
+	};
+	var p1 = new Person('Tom');
+	p1.showName()
+</script>
+</html>

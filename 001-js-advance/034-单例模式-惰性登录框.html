@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>034-单例模式-惰性登录框.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#btn{
+			position: relative;
+			z-index: 9999;
+		}
+		#login{
+			position: absolute;
+			width: 200px;
+			height: 300px;
+			top: 50%;
+			margin-top: -150px;
+			left: 50%;
+			margin-left: -100px;
+			background-color: black;
+			z-index: 99;
+			/*display: none;*/
+		}	
+		#mask{
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #ccc;
+			/*display: none;*/
+		}
+	</style>
+</head>
+<body>
+	<button id="btn">登录</button>
+	<!-- <div id="login"></div> -->
+	<!-- <div id="mask"></div> -->
+</body>
+<script>
+	var oBtn = document.getElementById('btn');
+	// var oLogin = document.getElementById('login');
+	// var oMask = document.getElementById('mask');
+
+	/*
+	var obj = null ;
+	function createSingle(){
+		if(!obj){
+			var oLogin = document.createElement('div');
+			oLogin.id = 'login'
+			document.body.appendChild(oLogin);
+			obj = oLogin;
+		}
+		return obj
+	}
+	*/
+
+	function getSingle(fn){
+		var obj = null;
+		return function (){
+			if(!obj){
+				obj = fn()
+			}
+		}
+	}
+	function createLogin(){
+		var oLogin = document.createElement('div');
+		oLogin.id = 'login'
+		document.body.appendChild(oLogin);
+		return oLogin;
+	}
+	function createMask(){
+		var oMask = document.createElement('div');
+		oMask.id = 'mask'
+		document.body.appendChild(oMask);
+		return oMask;
+	}
+
+	var createLoginSingle = getSingle(createLogin);
+	var createMaskSingle = getSingle(createMask);
+	oBtn.onclick = function(){
+		// oLogin.style.display = 'block';
+		// oMask.style.display = 'block';
+
+		// createSingle()
+		createLoginSingle();
+		createMaskSingle();
+	}
+</script>
+</html>

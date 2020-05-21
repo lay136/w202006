@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>001-jquey的使用.html</title>
+</head>
+<body>
+	
+</body>
+<!-- <script src="js/jquery-1.12.4.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajaxs/libs/jquery/1.12.4/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery-1.12.4.js"><\/script>');
+</script>
+<script>
+	// console.log(jQuery)
+	// console.log($)
+	/*
+	jQuery(document).ready(function(){
+		console.log('hello jQuery')
+	})
+	jQuery(document).ready(function(){
+		console.log('hello jQuery2222')
+	})
+	window.onload = function(){
+		console.log('1111')
+	}
+	window.onload = function(){
+		console.log('2222')
+	}
+	*/
+
+	/*
+	$(document).ready(function(){
+		console.log('hello jQuery')
+	})
+	$(document).ready(function(){
+		console.log('hello jQuery2222')
+	})
+	*/
+
+	$(function(){
+		console.log('hello jQuery')
+	})
+	$(function(){
+		console.log('hello jQuery2222')
+	})
+</script>
+</html>

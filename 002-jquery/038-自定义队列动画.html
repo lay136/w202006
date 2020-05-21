@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>038-自定义队列动画.html</title>
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			opacity: 0.2;
+		}
+	</style>
+</head>
+<body>
+	<button>变化</button>
+	<div></div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		$('button').on('click',function(){
+			/*
+			$('div').animate({width:300},2000,function(){
+				console.log('width done');
+			});
+			$('div').animate({height:300},2000,function(){
+				console.log('height done');
+			});
+			$('div').animate({opacity:1},2000,function(){
+				console.log('opacity done');
+			});
+			*/
+			/*
+			$('div').animate({width:300},2000,function(){
+				// console.log('width done');
+				$('div').animate({height:300},2000,function(){
+					// console.log('height done');
+					$('div').animate({opacity:1},2000,function(){
+						// console.log('opacity done');
+						console.log('all done');
+					});
+				});
+			});
+			*/
+			var res = $('div')
+			.animate({width:300},2000,function(){
+				console.log('width done');
+			})
+			.animate({height:300},2000,function(){
+				console.log('height done');
+			})
+			.animate({opacity:1},2000,function(){
+				console.log('opacity done');
+			});
+			console.log(res)
+		})
+	});
+</script>
+</html>

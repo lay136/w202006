@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>009-属性的权限获取.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function Person(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	Person.prototype.showName = function(){
+		console.log('I am '+ this.name)
+	}
+	Person.prototype.showAge = function(){
+		console.log('I am'+ this.age +'years old')
+	}
+	Person.prototype.LEGS = 2
+
+	var p1 = new Person('Tom',18);
+	Object.defineProperties(p1,{
+		EYES:{
+			value:2,
+			enumerable:false,
+			writable:false,
+			configurable:true
+		},
+		HANDS:{
+			value:4,
+			enumerable:true,
+			writable:true,
+			configurable:false
+		}
+	})
+
+
+	console.log(Object.getOwnPropertyDescriptor(p1,'name'))
+	console.log(Object.getOwnPropertyDescriptor(p1,'age'))
+	console.log(Object.getOwnPropertyDescriptor(p1,'EYES'))
+	console.log(Object.getOwnPropertyDescriptor(p1,'HANDS'))
+
+	console.log(p1.LEGS)
+	console.log(Object.getOwnPropertyDescriptor(Person.prototype,'LEGS'))
+
+</script>
+</html>

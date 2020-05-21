@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>021-操作尺寸.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box1{
+			width: 100px;
+			height: 100px;
+			padding: 20px;
+			border: 10px solid #000;
+			background-color: red;
+		}
+		.box2{
+			width: 200px;
+			height: 200px;
+			padding:20px;
+			margin-top: 10px;
+			border: 20px solid #000;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1"></div>
+	<div class="box2"></div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		// console.log($('div').css('width'));
+		// console.log($('div').width());
+		// console.log($('div').height());
+		// console.log($('div').eq(1).width());
+		// $('div').width(300);
+		// $('div').eq(1).width(300);
+
+		// console.log($('div').eq(0).innerWidth());
+		// console.log($('div').innerWidth(200));
+
+		// console.log($('div').outerWidth());
+		// console.log($('div').outerHeight());
+		// console.log($('div').eq(1).outerHeight());
+		$('div').outerWidth(150);
+	});
+</script>
+</html>

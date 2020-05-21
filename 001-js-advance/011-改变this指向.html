@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>011-改变this指向.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*
+	function show(){
+		console.log(this)
+	}
+	*/
+
+	// show()// window
+	//window.show()// window
+	// show.call()
+
+
+	/*
+	function show(n1,n2){
+		console.log(this,n1,n2)
+	}
+	show(1,2)
+	show.call(1,2)
+	show.call(1,2,3)
+	show.call({name:'tom'},1,2)
+	show.call(null,1,2)
+	*/
+
+	/*
+	function show(n1,n2){
+		console.log(this,n1,n2)
+	}
+	show(1,2)
+	show.apply(1,[2])
+	show.apply(1,[2,3])
+	show.apply(null,[2,3])
+	*/
+
+	function show(n1,n2){
+		console.log(this,n1,n2)
+	}
+	show(1,2)
+	/*
+	var result = show.bind()
+	console.log(result)
+	result()
+	*/
+	show.bind({name:'Leo'})(1,2)
+	show.bind(null)(1,2)
+</script>
+</html>

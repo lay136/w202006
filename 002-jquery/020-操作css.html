@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>020-操作css.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box1{
+			width: 100px;
+			height: 100px;
+			background: yellow;
+		}
+		.box2{
+			margin-top: 10px;
+			width: 200px;
+			height: 200px;
+			background: red;
+
+		}
+	</style>
+</head>
+<body>
+	<div class="box1"></div>
+	<div class="box2"></div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		// console.log($('div').eq(1).css('width'));
+		// console.log($('div').eq(1).css('background'));
+
+		/*
+		$('div').css("width","300px");
+		$('div').css("height","300px");
+		*/
+		// console.log($('div').css("width","300px"));
+		/*
+		$('div')
+		.css("width","300px")
+		.css("height","300px")
+		.css("opacity",0.5);
+		*/
+		$('div').css({
+			width:300,
+			height:300,
+			opacity:0.1
+		})
+
+		console.log($('div').hasClass('box1'));
+		console.log($('div').hasClass('box3'));
+	});
+</script>
+</html>

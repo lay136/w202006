@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>015-Object创建对象.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// console.log(Object.prototype)
+	var obj1 = {}
+	// console.log(obj1.__proto__ == Object.prototype)
+	console.log('1:::',obj1)
+
+	var obj2 = Object.create({name:'Leo'})
+	console.log('2:::',obj2)
+
+	var obj3 = Object.create(null)
+	console.log('3:::',obj3)
+</script>
+</html>

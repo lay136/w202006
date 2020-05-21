@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>024-事件的绑定.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			width: 100px;
+			height: 100px;
+			margin: 10px;
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		function fn(){
+			console.log('fn click')
+		}
+		/*
+		$('div').click(function(){
+			console.log('click1')
+		});
+		*/
+		/*
+		$('div').on('click',function(){
+			console.log('click2')
+		});
+		$('div').on('click',fn);
+		*/
+		/*
+		$('div').one('click',function(){
+			console.log('click3')
+		})
+		*/
+		$('div').hover(function(){
+			console.log('hover in ...')
+		},function(){
+			console.log('hover out ...')
+		})
+	});
+</script>
+</html>
