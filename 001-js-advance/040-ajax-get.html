@@ -13,7 +13,7 @@
 	oBtn.onclick = function(){
 		//1.生成ajax对象(购买电话)
 		var oAjax = new XMLHttpRequest();
-		// console.log(oAjax);
+		console.log(oAjax);
 		//2.建立连接(打电话建立连接)
 		oAjax.open('GET','http://127.0.0.1:3000/040-data.json',true);
 
@@ -25,7 +25,7 @@
 
 		//4.等待服务器返回数据(等待应答)
 		oAjax.onreadystatechange = function(){//监听事件等待数据返回
-			// console.log(oAjax.readyState)
+			console.log(oAjax.readyState)
 			if(oAjax.readyState == 4){//数据完全返回
 				// console.log(oAjax.responseText);
 				// console.log(oAjax.status)

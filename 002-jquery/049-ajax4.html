@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>049-ajax4.html</title>
+</head>
+<body>
+	<button>发送请求</button>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		$('button').eq(0).on('click',function(){
+			var res = $.ajax({
+				url:'./046-data.json',
+				type:'GET',
+				/*
+				success:function(data,statusMsg,jqXHR){
+					console.log('1:::');
+					console.log('data:::',data);
+					console.log('statusMsg:::',statusMsg);
+					console.log('jqXHR:::',jqXHR);
+				},
+				error:function(jqXHR,statusMsg){
+					console.log('2:::');
+					console.log('jqXHR:::',jqXHR);
+					console.log('statusMsg:::',statusMsg);
+				},
+				complete:function(jqXHR,statusMsg){
+					console.log('3::');
+					console.log('jqXHR:::',jqXHR);
+					console.log('statusMsg:::',statusMsg);
+				}
+				*/
+			})
+			// console.log(res)
+			res.abort();
+			var result = res
+			.done(function(data,statusMsg,jqXHR){
+				console.log('1:::');
+				console.log('data:::',data);
+				console.log('statusMsg:::',statusMsg);
+				console.log('jqXHR:::',jqXHR);
+			})
+			.fail(function(jqXHR,statusMsg){
+				console.log('2:::');
+				console.log('jqXHR:::',jqXHR);
+				console.log('statusMsg:::',statusMsg);
+			})
+			.always(function(jqXHR,statusMsg){
+				console.log('3::');
+				// console.log('data:::',data);
+				console.log('jqXHR:::',jqXHR);
+				console.log('statusMsg:::',statusMsg);
+			})
+			// console.log('result:::',result)
+		});
+	});
+</script>
+</html>

@@ -1,0 +1,58 @@
+/*
+* @Author: Chen
+* @Date:   2020-05-25 17:27:42
+* @Last Modified by:   Chen
+* @Last Modified time: 2020-05-26 17:06:40
+*/
+	.container{
+		width: 1200px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	body{
+		font-size: 14px;
+	}
+	.transition{
+		transition: all 0.5s;
+	}
+
+/*浮动相关样式开始*/
+	.fl{
+		float: left;
+	}
+	.fr{
+		float: right;
+	}
+	.clearfix:after{
+		content: "";
+		clear: both;
+		display: block;
+		height: 0;
+		visibility: hidden;
+	}
+	.clearfix{
+		*zoom: 1;
+	}
+/*浮动相关样式结束*/
+
+/*a链接共同样式开始*/
+	a{
+		font-size: 12px;
+		text-decoration: none;
+		color: #4d555d;
+	}
+	.link:hover{
+		color: #ea7469;
+	}
+/*a链接共同样式结束*/
+
+/*下拉菜单共同样式开始*/
+	.dropdown{
+		position: relative;
+	}
+	.dropdown-layer{
+		position: absolute;
+		display: none;
+		z-index: 999;
+	}
+/*下拉菜单共同样式结束*/

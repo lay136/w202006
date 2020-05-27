@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>057-原理分析-extend方法.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function kQuery(){
+
+	}
+	kQuery.extend = kQuery.prototype.extend = function(options){
+		// console.log('1:::',this)
+		for(key in options){
+			this[key] = options[key];
+		}
+	}
+
+	/*
+	kQuery.extend =function(options){
+		console.log('2:::',this);
+		for(key in options){
+			this[key] = options[key];
+		}
+	}
+	*/
+
+
+	kQuery.prototype.extend({
+		show:function(){
+			console.log('show test');
+		},
+		fn:function(){
+			console.log('fn test');
+		}
+	})
+
+	kQuery.extend({
+		test:function(){
+			console.log('test 1')
+		},
+		test2:function(){
+			console.log('test 2 ')
+		}
+	})
+
+	kQuery.test();
+	kQuery.test2();
+
+
+	new kQuery().show();
+	new kQuery().fn();
+</script>
+</html>

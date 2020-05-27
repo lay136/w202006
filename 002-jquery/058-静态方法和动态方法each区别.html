@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>058-静态方法和动态方法each区别.html</title>
+</head>
+<body>
+	<div>01</div>
+	<div>02</div>
+	<div>03</div>
+	<div>04</div>
+	<div>05</div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		// console.log($('div'));
+		var res = $.each($('div'),function(index,elem){
+			// console.log(this);
+			// console.log(index,elem);
+		})
+		// console.log(res === $('div'));
+		// console.log(res);
+		// console.log($('div'));
+
+
+
+		var result = $('div').each(function(index,elem){
+			console.log(this);
+			// console.log(index,elem)
+		});
+		console.log(result === $('div'));
+		console.log(result);
+		console.log($('div'));
+	});
+</script>
+</html>

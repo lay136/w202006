@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>051-扩展自己的插件二.html</title>
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			margin-top: 10px;
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<button>测试插件</button>
+	<div></div>
+	<div></div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	/*
+	(function(){
+		$.fn.setColor = function(options){
+			var DEFAULT = {background:'red'};
+			options = $.extend({},DEFAULT,options);
+			return this.each(function(index,elem){
+				elem.style.background = options.background;
+			})
+		}
+		$.fn.setColor = function(options){
+			var DEFAULT = {background:'red'};
+			options = $.extend({},DEFAULT,options);
+			return this.each(function(index,elem){
+				elem.style.background = options.background;
+			})
+		}
+		$.fn.setColor = function(options){
+			var DEFAULT = {background:'red'};
+			options = $.extend({},DEFAULT,options);
+			return this.each(function(index,elem){
+				elem.style.background = options.background;
+			})
+		}
+	})();
+	*/
+	(function(){
+		// console.log($.fn);
+		$.fn.extend({
+			setColor:function(options){
+				var DEFAULT = {background:'red'};
+				options = $.extend({},DEFAULT,options);
+				return this.each(function(index,elem){
+					elem.style.background = options.background;
+				})
+			}
+		})
+		console.log($.fn)
+	})();
+</script>
+<script>
+	$(function(){
+		$('button').on('click',function(){
+			// $('div').css({width:300}).animate({height:300});
+			// $('div').setColor();
+			$('div').setColor({background:'blue'}).animate({height:300});
+		})
+	});
+</script>
+</html>

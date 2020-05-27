@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>059-匿名函数自我调用.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*
+	function show(){
+		console.log('show ...')
+	}
+	show();
+	*/
+	/*
+	(function(){
+		var a = 1;
+		console.log('fn ...')
+	})();
+	console.log(a);
+	*/
+
+	(function(w){
+		function Person(name,age){
+			this.name = name;
+			this.age = age;
+		}
+		Person.prototype = {
+			constructor:Person,
+			showName:function(){
+				console.log('I am '+ this.name)
+			}
+		}
+
+		w.Person = Person;
+		// console.log(window);
+		// window.Person = Person;
+	})(window);
+	var p1 = new Person('Tom',18);
+	p1.showName();
+</script>
+</html>

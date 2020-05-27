@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>053-原理解析-传入布尔值false和函数.html</title>
+</head>
+<body>
+	
+</body>
+<!-- <script src="js/jquery-1.12.4.js"></script> -->
+<script src="js/kquery-1.0.0.js"></script>
+<script>
+	//1.传入布尔值是false
+	// console.log($(''));
+	// console.log($(0));
+	// console.log($(false));
+	// console.log($(null));
+	// console.log($(undefined));
+	// console.log($(NaN));
+
+	//2.传入函数
+	/*
+	console.log($(function(){
+		console.log('aaa')
+	}))
+	*/
+	window.onload = function(){
+		console.log('onload...')
+	}
+	$(function(){
+		console.log('aaa')
+	});
+	$(function(){
+		console.log('bbb')
+	});
+	window.addEventListener('DOMContentLoaded',function(){
+		console.log('DOMContentLoaded')
+	})
+</script>
+</html>

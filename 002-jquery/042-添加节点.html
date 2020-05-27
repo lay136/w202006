@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>042-添加节点.html</title>
+</head>
+<body>
+	<button>添加节点1</button>
+	<button>添加节点2</button>
+	<button>添加节点3</button>
+	<button>添加节点4</button>
+	<button>添加节点5</button>
+	<button>添加节点6</button>
+	<ul>
+		<li>01</li>
+		<li>02</li>
+		<li>03</li>
+		<li>04</li>
+		<li>05</li>
+	</ul>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		$('button').eq(0).on('click',function(){
+			var $li = $('<li>我是新建的11</li>');
+			// console.log($li);
+			$('ul').append($li)
+		});
+		$('button').eq(1).on('click',function(){
+			var $li = $('<li>我是新建的22</li>');
+			$li.appendTo($('ul'));
+		});
+		$('button').eq(2).on('click',function(){
+			var $li = $('<li>我是新建的33</li>');
+			$('ul').prepend($li);
+		});
+		$('button').eq(3).on('click',function(){
+			var $li = $('<li>我是新建的44</li>');
+			$li.prependTo($('ul'));
+		});
+		$('button').eq(4).on('click',function(){
+			var $li = $('<li>我是新建的55</li>');
+			$('li').eq(0).after($li);
+		});
+		$('button').eq(5).on('click',function(){
+			var $li = $('<li>我是新建的66</li>');
+			$('li').eq(3).before($li);
+		});
+	});
+</script>
+</html>

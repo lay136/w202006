@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>047-ajax-jsonp.html</title>
+</head>
+<body>
+	<button>请求数据jsonp</button>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		$('button').on('click',function(){
+			$.ajax({
+				url:'http://127.0.0.1:3001',
+				dataType:'jsonp',
+				jsonp:'getData',
+				success:function(data,statusMsg,jqXHR){
+					console.log('1:::');
+					console.log('data:::',data);
+					console.log('statusMsg:::',statusMsg);
+					console.log('jqXHR:::',jqXHR);
+				},
+				error:function(jqXHR,statusMsg){
+					console.log('2:::');
+					console.log('jqXHR:::',jqXHR);
+					console.log('statusMsg:::',statusMsg);
+				}			
+			})
+		})
+	});
+</script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>048-ajax3.html</title>
+</head>
+<body>
+	<button>发送GET请求</button>
+	<button>发送POST请求</button>
+	<button>获取JSON数据</button>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		$('button').eq(0).on('click',function(){
+			$.get('./046-data.json',{name:'Leo'},function(data){
+				console.log(data);
+			},'json')
+		});
+		$('button').eq(1).on('click',function(){
+			$.post('http://127.0.0.1:3000',{name:'Leo',age:88},function(data){
+				console.log(data);
+			},'text')
+		});
+		$('button').eq(2).on('click',function(){
+			$.getJSON('./046-data.json',function(data){
+				console.log(data.name);
+			})
+		});
+	});
+</script>
+</html>

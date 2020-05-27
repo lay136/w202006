@@ -1,0 +1,104 @@
+/*
+* @Author: Chen
+* @Date:   2020-05-25 17:27:27
+* @Last Modified by:   Chen
+* @Last Modified time: 2020-05-26 17:07:40
+*/
+/*顶部导航开始*/
+	.top{
+		/*height: 50px;*/
+		background-color: #f3f5f7;
+	}
+	.top .top-left li{
+		height: 44px;
+		margin-right: 8px;
+		line-height: 44px;
+	}
+	.login{
+		color: #ea7469;
+	}
+	
+	.top .dropdown-toggle{
+		display: block;
+		padding:0 5px; 
+		height: 44px;
+		line-height: 44px;
+		/*background-color: #fff;*/
+	}
+	.top .dropdown-layer{
+		top: 44px;
+		left: 0;
+		border:1px solid  #f3f5f7;
+		border-top: none;
+		white-space: nowrap;
+		background-color:#fff; 
+	}
+	/*
+	.dropdown:hover .dropdown-toggle{
+		background-color: #fff;
+	}
+	.dropdown:hover .dropdown-layer{
+		display: block;
+	}
+	.dropdown:hover .dropdown-icon{
+		transform: rotateZ(180deg);
+	}
+	*/
+	.menu-active .dropdown-toggle{
+		background-color: #fff;
+	}
+	.menu-active .dropdown-layer{
+		display: block;
+	}
+	.menu-active .dropdown-icon{
+		transform: rotateZ(180deg);
+	}
+	
+	.top .dropdown-layer li{
+		height: 30px;
+		padding:0 5px;
+		line-height: 30px;
+	}
+	.top .dropdown-layer li:hover{
+		background-color: #f3f5f7;
+	}
+/*顶部导航结束*/
+
+/*头部搜索开始*/
+	.header{
+		height: 100px;
+		background-color: red;
+	}
+/*头部搜索结束*/
+
+/*主导航区域开始*/
+	.nav-main{
+		height: 50px;
+		background-color: black;
+	}
+
+/*主导航区域结束*/
+
+/*焦点区域开始*/
+	.focus{
+		height: 400px;
+		background-color: yellow;
+	}
+
+/*焦点区域结束*/
+
+/*今日热销区域开始*/
+	.todays{
+		height: 100px;
+		background-color: tomato;
+	}
+
+/*今日热销区域结束*/
+
+/*楼层开始*/
+	.floor{
+		height: 400px;
+		background-color: green;
+	}
+
+/*楼层结束*/

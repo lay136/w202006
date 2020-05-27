@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>050-扩展自己的插件一.html</title>
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			margin-top: 10px;
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<button>测试插件</button>
+	<div></div>
+	<div></div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	// console.log($.prototype === $.fn)
+	$.fn.setColor = function(options){
+		console.log(this);
+		var DEFAULT = {background:'red'};
+		options = $.extend({},DEFAULT,options);
+		return this.each(function(index,elem){//$('div').each()
+			// console.log(index,elem);
+			// console.log(this)
+			elem.style.background = options.background;
+		})
+	}
+</script>
+<script>
+	$(function(){
+		// console.log($('div'));
+		// console.log($);
+		$('button').on('click',function(){
+			// $('div').css({width:300}).animate({height:300});
+			// $('div').setColor();
+			// console.log($('div').setColor({background:'blue'}));
+			$('div').setColor({background:'blue'}).animate({height:300});
+		})
+	});
+</script>
+</html>
