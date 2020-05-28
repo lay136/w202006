@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-05-28 15:51:57
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-05-28 16:34:28
+* @Last Modified time: 2020-05-28 16:49:29
 */
 ;(function($){
 	function init($elem,hiddenCallback){
@@ -176,7 +176,7 @@
 		})
 	}
 
-	DEFAULT = {
+	var DEFAULT = {
 		js:true,
 		mode:'fade'
 	}

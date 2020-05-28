@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-05-25 17:27:42
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-05-26 17:06:40
+* @Last Modified time: 2020-05-28 17:40:36
 */
 	.container{
 		width: 1200px;
@@ -54,5 +54,11 @@
 		position: absolute;
 		display: none;
 		z-index: 999;
+	}
+	.dropdown-left{
+		left: 0;
+	}
+	.dropdown-right{
+		right: 0;
 	}
 /*下拉菜单共同样式结束*/
