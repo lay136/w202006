@@ -5,8 +5,8 @@ var url = require('url');
 
 var server = http.createServer(function(req,res){
 	// 设置允许访问的源
-	// res.setHeader('Access-Control-Allow-Origin','http://127.0.0.1:3000');
-	res.setHeader('Access-Control-Allow-Origin','*');
+	res.setHeader('Access-Control-Allow-Origin','http://127.0.0.1:3000');
+	// res.setHeader('Access-Control-Allow-Origin','*');
 	//允许请求的方法
 	res.setHeader("Access-Control-Allow-Methods",'PUT,DELETE');
 	//设置请求头字段信息

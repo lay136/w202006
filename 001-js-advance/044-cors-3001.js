@@ -5,13 +5,13 @@ var url = require('url');
 
 var server = http.createServer(function(req,res){
 	// 设置允许访问的源
-	// res.setHeader('Access-Control-Allow-Origin','http://127.0.0.1:3000');
-	res.setHeader('Access-Control-Allow-Origin','*');
+	res.setHeader('Access-Control-Allow-Origin','http://127.0.0.1:3000');
+	// res.setHeader('Access-Control-Allow-Origin','*');
 	//设置允许的访问的响应头信息
 	res.setHeader("Access-Control-Expose-Headers",'Date,Connection,Kuazhu-Test');
 	//设置响应头字段信息
-	res.setHeader("Content-Type",'text/plain');
-	res.setHeader("Kuazhu-Test",'Kuazhu-content-Test');
+	// res.setHeader("Content-Type",'text/plain');
+	// res.setHeader("Kuazhu-Test",'Kuazhu-content-Test');
 
 
 

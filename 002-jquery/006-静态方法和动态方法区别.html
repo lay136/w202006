@@ -14,13 +14,19 @@
 	var num = Math.random();
 	var arr = new Array(1,2,3);
 	// console.log(arr);
+	// arr.forEach()
+	// Array.forEach()
 	function Person (name){
 		this.name = name;
+	}
+	Person.showName = function (){
+		console.log('I am Tom')
 	}
 	Person.prototype.showName = function(){
 		console.log('I am  '+this.name)
 	};
 	var p1 = new Person('Tom');
+	Person.showName();
 	p1.showName()
 </script>
 </html>

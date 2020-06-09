@@ -32,7 +32,8 @@
 <script src="js/jquery-1.12.4.js"></script>
 <script>
 	var slient = {
-		show:function($elem,callBack){
+		show:function($elem,callBack,callBack2){
+			callBack2();
 			$elem.show();
 			callBack();
 		},
@@ -45,6 +46,8 @@
 		$('button').eq(0).on('click',function(){
 			slient.show($('div'),function(){
 				console.log('show');
+			},function(){
+				console.log('before show')
 			});
 		});
 		$('button').eq(1).on('click',function(){

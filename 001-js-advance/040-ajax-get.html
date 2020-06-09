@@ -18,7 +18,7 @@
 		oAjax.open('GET','http://127.0.0.1:3000/040-data.json',true);
 
 		//设置请求头信息
-		oAjax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+		// oAjax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 
 		//3.发送请求(问问题)
 		oAjax.send();
@@ -28,7 +28,7 @@
 			console.log(oAjax.readyState)
 			if(oAjax.readyState == 4){//数据完全返回
 				// console.log(oAjax.responseText);
-				// console.log(oAjax.status)
+				console.log(oAjax.status)
 				if(oAjax.status == 200){
 					try{
 						var data = oAjax.responseText;

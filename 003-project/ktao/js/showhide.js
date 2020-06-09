@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-05-28 15:51:57
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-05-28 16:49:29
+* @Last Modified time: 2020-06-08 16:45:35
 */
 ;(function($){
 	function init($elem,hiddenCallback){
@@ -197,12 +197,13 @@
 
 	$.fn.extend({
 		showHide:function(options){
-			//1.实现隐士迭代和链式调用
+			//1.实现隐式迭代和链式调用
 			return this.each(function(){
 				var $elem = $(this);
-				var showHideObj = $elem.data('showHideObj');
+				var showHideObj = $elem.data('showHideObj');//false true
 				//单例模式
 				if(!showHideObj){
+					//合并配置信息
 					options = $.extend({},DEFAULT,options);
 					//2.获取显示隐藏的方法
 					var showHideObj = getShowHide($elem,options);

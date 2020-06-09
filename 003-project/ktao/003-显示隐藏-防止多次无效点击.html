@@ -47,6 +47,7 @@
 			$elem.show();
 			$elem.trigger('shown').data('status','shown');
 			
+			
 		},
 		hide:function($elem,){
 			//获取元素的显示隐藏状态信息
@@ -55,6 +56,7 @@
 			$elem.trigger('hide').data('status','hide');
 			$elem.hide();
 			$elem.trigger('hidden').data('status','hidden');
+			
 		}
 	}
 	var $box = $('div');

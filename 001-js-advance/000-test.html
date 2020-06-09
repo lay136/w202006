@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>000-test.html</title>
+	<style>
+		.pagination-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .pagination {
+            display: inline-block;
+        }
+
+        .pagination a {
+            background-color: #999;
+            color: #fff;
+            padding: 1px 6px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .pagination a:last-child {
+            margin-right: 0;
+        }
+
+        .pagination a.active {
+            background-color: #85D1FF;
+        }
+
+        .page-change {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            background-color: #f7f7f7;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .skip input {
+            width: 50px;
+        } 
+	</style>
+</head>
+<body>
+	<div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="card rounded-0 border-0 mb-3">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5 class="card-title mb-0">Tipset 数据</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- table-responsive -->
+                    <table class="table-responsive table" style="text-nowrap: nowrap">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Height</th>
+                                <th scope="col">Tipset</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tipSet_wrap">
+                            <!--
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                            </tr>
+                         -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 分页容器 -->
+    <div class="pagination-container">
+        <button style="background-color: #f7f7f7; border: none; outline: none">
+            <span class="page-change prev" aria-hidden="true">&laquo;</span>
+        </button>
+        <div class="pagination" id="pagination"></div>
+        <button style="background-color: #f7f7f7; border: none; outline: none">
+            <span class="page-change next" aria-hidden="true">&raquo;</span>
+        </button>
+    </div>
+</body>
+<script src="../002-jquery/js/jquery-1.12.4.js"></script>
+<script>
+	$.ajax({
+        type: "GET",
+        url: "http://47.100.10.123:10080/lotus/chain_data",
+        data: '',
+        dataType: "json",
+        success: function (result) {
+            // console.log("---------------", result);
+            let newMain = document.querySelector('#tipSet_wrap');//数据容器
+            let pagination = document.querySelector('.pagination');//分页容器
+            let pageCount = Math.ceil(result.length / 10); //根据数据的长度计算总共几页
+            //规定页码显示范围
+            let range = 2;//表示显示当前页的前两页和后两页以及当前页
+            let newsDataRender = [];//每页要显示的数据
+            let p = 1;//根据p值显示每页的数据
+
+            //渲染页面函数
+            let render = () => {
+                newMain.innerHTML = ' ';
+                newsDataRender = result.slice((p - 1) * 10, 10 * p); //每页要显示的数据,一页显示5条
+                newsDataRender.forEach((item, index) => {
+                    
+                        newMain.innerHTML += `
+                        <tr>
+                            <th style="vertical-align: middle" scope="row">${item.id}</th>
+                            <td>${item.height}</td>
+                            <td>${item.tipset}</td>
+                         </tr>`;
+                });
+            };
+            //初始化页面
+            render();
+
+            let renderPagination = (page)=>{
+            	//获取页码
+            	var pages = [];
+            	if(page-range <= 0){
+            		pages = [1,2,3,4,5]
+            	}else if(page+range >= pageCount ){
+            		for(var k = 4;k>=0;k--){
+            			pages.push(pageCount - k);
+            		}
+            	}else{
+            		for(var l = range;l>=1;l--){
+            			pages.push(page-l);
+            		}
+            		pages.push(page);
+            		for(var m = 1;m<=range;m++){
+            			pages.push(page+m);
+            		}
+            	}
+            	console.log(pages)
+            	//渲染分页
+            	pagination.innerHTML = '';
+	            for (let i = 0; i < pages.length; i++) {
+	            	if(p == pages[i]){
+						pagination.innerHTML += `<a class="active">${pages[i]}</a>`;
+	            	}else{
+	            		pagination.innerHTML += `<a>${pages[i]}</a>`;
+	            	}
+	            	
+	            }
+	            // pagination.innerHTML +=`<span class="skip">跳转至 <input type="text"> </span>页`;//获取页数
+	            
+            }
+            renderPagination(1)
+            
+            //事件代理监听事件
+            let asAll = pagination.querySelectorAll('a');
+	            //页面刚进来时第一页高亮
+            // asAll[p - 1].classList.add('active');
+            $('#pagination').on('click','a',function(){
+            	asAll = pagination.querySelectorAll('a');
+            	var $this = $(this);
+                p = parseInt($this.html()); //点击页数，改变p的值，以改变这个页面要显示的数据，达到分页的效果
+               	
+               	//更新分页器
+               	renderPagination(p);
+               	console.log(this);
+                render(); //重新渲染页面
+            })
+
+
+            //上一页
+            let prev = document.querySelector('.prev');
+            prev.onclick = function (e) {
+                if (p <= 1) {
+                    console.log(p);
+                    return;
+                } else {
+                    p = p - 1;
+                    //更新分页器
+                    renderPagination(p);
+                    render();
+                }
+            };
+            //下一页
+            let next = document.querySelector('.next');
+            next.onclick = function () {
+                if (p > pageCount - 1) {
+                	console.log(p)
+                    return;
+                }
+                p = p + 1;
+                //更新分页器
+                renderPagination(p);
+                render();
+            }
+           
+
+        },
+        error: function () {
+            alert("网络错误, 稍后再试 !")
+        }
+    });
+</script>
+</html>

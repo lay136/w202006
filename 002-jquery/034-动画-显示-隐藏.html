@@ -21,14 +21,10 @@
 <script>
 	$(function(){
 		$('button').eq(0).on('click',function(){
-			$('div').show(1000,function(){
-				console.log('div shown')
-			});
-		});
+			$('div').show();
+		})
 		$('button').eq(1).on('click',function(){
-			$('div').hide(1000,function(){
-				console.log('div hidden')
-			});
+			$('div').hide();
 		});
 		$('button').eq(2).on('click',function(){
 			$('div').toggle(1000,function(){
