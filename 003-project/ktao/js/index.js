@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-05-25 17:27:55
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-06-09 11:11:33
+* @Last Modified time: 2020-06-11 16:23:31
 */
 ;(function($){
 /*顶部导航逻辑--------------------开始*/
@@ -52,4 +52,42 @@
 	
 
 /*顶部导航逻辑--------------------结束*/
+
+/*搜索区域逻辑--------------------开始*/
+	var $search = $('.header .search');
+	$search.search({
+		js:true,
+		mode:'slideDownUp'
+	});
+	$search.on('getSearchData',function(ev,data){
+		var $elem = $(this);
+		//1.生成html结构
+		var html = getSearchLayer(data,10);
+		// console.log(html)
+		//2.将html内容插入到下拉层
+		$elem.search('appendHtml',html);
+		
+		//3.显示下拉层
+		if(html == ''){
+			$elem.search('hideLayer');
+		}else{
+			$elem.search('showLayer');
+		}
+	});
+	$search.on('getNoSearchData',function(){
+		$elem.search('appendHtml','');
+		$elem.search('hideLayer');
+	})
+	//生成下拉层就够数据函数并且可以控制数据长度
+	function getSearchLayer(data,max){
+		var html = '';
+		for(var i = 0;i<data.result.length;i++){
+			if(i >= max) break;
+			html += '<li class="search-item">'+data.result[i][0]+'</li>'
+		}
+		return html;
+	}
+
+
+/*搜索区域逻辑--------------------结束*/
 })(jQuery);
