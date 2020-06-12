@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-05-28 15:51:57
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-06-09 10:12:39
+* @Last Modified time: 2020-06-12 10:36:25
 */
 ;(function($){
 	function Dropdown($elem,options){
@@ -43,7 +43,7 @@
 			
 		},
 		show:function(){
-			//处理快速划过出发显示事件
+			//处理快速划过触发显示事件
 			if(this.options.delay){
 				this.timer = setTimeout(function(){
 					this.$layer.showHide('show');
