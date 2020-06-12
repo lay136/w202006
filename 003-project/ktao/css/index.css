@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-05-25 17:27:27
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-06-09 15:48:00
+* @Last Modified time: 2020-06-12 09:32:52
 */
 /*顶部导航开始*/
 	.top{
@@ -135,7 +135,20 @@
 /*主导航区域开始*/
 	.nav-main{
 		height: 50px;
-		background-color: black;
+		background-color: #000;
+	}
+	.nav-main ul{
+		margin-left: 246px;
+	}
+	.nav-main .nav-main-item{
+		float: left;
+		height: 50px;
+		line-height: 50px;
+		margin-right: 20px;
+	}
+	.nav-main-item .link{
+		color: #fff;
+		font-size: 16px;
 	}
 
 /*主导航区域结束*/
