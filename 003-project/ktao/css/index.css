@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-05-25 17:27:27
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-06-12 15:07:04
+* @Last Modified time: 2020-06-15 11:47:59
 */
 /*顶部导航开始*/
 	.top{
@@ -266,78 +266,168 @@
 		width: 728px;
 		height: 504px;
 	}
-	.carousel-wrap{
-		position: relative;
-		overflow: hidden;
-	}
-	.carousel-wrap .carousel-item{
-		position: absolute;
-		left:0;
-		top:0;
-		width: 100%;
-		height: 100%;
-	}
-	.carousel-wrap .btns{
-		position: absolute;
-		left:50%;
-		bottom: 20px;
-	}
-	.carousel-wrap .btn-item{
-		float: left;
-		width: 12px;
-		height: 12px;
-		background: rgba(0,0,0,0.8);
-		border-radius: 50%;
-		margin-right: 5px;
-		cursor: pointer;
-	}
-	.carousel-wrap .btn-item.active{
-		background: #fff;
+	
+	/*轮播图区域结束*/
+	/*焦点区域右侧静态页面开始*/
+	.focus .sidebar {
+		width: 249px;
 	}
 
-	.carousel-wrap .control {
-		display: none;
-		position: absolute;
-		top:50%;
-		width: 30px;
-		height: 60px;
-		line-height: 60px;
+	.focus-news {
+		padding: 7px 20px 12px;
+		background-color: #fff;
+		border: 1px solid #d9dde1;
+		border-bottom: none;
+	}
+	.focus-news-head {
+		height: 38px;
+		line-height: 38px;
+	}
+	.focus-news-title {
+		color: #ea675a;
+		font-size: 16px;
+	}
+	.focus-news-body {
+		line-height: 28px;
+	}
+	.focus-service {
+		background-color: #fff;
+		border-left: 1px solid #d9dde1;
+	}
+	.focus-service-item {
+		width: 61px;
+		height: 71px;
+		border-top: 1px solid #d9dde1;
+		border-right: 1px solid #d9dde1;
 		text-align: center;
-		background: rgba(0,0,0,0.8);
-		font-size: 20px;
-		color: #fff;
-		margin-top: -30px;
-		cursor: pointer;
-		user-select: none;
 	}
-	.carousel-wrap .control-left{
-		left:0;
+	.focus-service-icon,
+	.focus-service-text {
+		display: inline-block;
+		width: 100%;
 	}
-	.carousel-wrap .control-right{
-		right: 0;
+	.focus-service-icon {
+		margin-top: 17px;
+		color: #f67272;
+		font-size: 22px;
 	}
-	.carousel-wrap.fade .carousel-item{
-		display: none;
+	.focus-service-text {
+		margin-top: 6px;
+		color: #4d555d;
 	}
-	.carousel-wrap.slide .carousel-item{
-		left:100%;
+	.focus-ad {
+		width: 100%;
+		height: 90px;
+		background: url(../image/focus-ad.png) no-repeat;
 	}
-	/*轮播图区域结束*/
+	.focus .slider{
+		margin-left: 8px;
+	}
+	/*焦点区域右侧静态页面结束*/
 
 /*焦点区域结束*/
 
 /*今日热销区域开始*/
 	.todays{
-		height: 100px;
-		background-color: tomato;
+		height: 158px;
+		background: #fff;
+	}
+	.todays .carousel-wrap{
+		width: 100%;
+		height: 158px;
+		z-index: 2;
+	}
+	.todays .carousel-wrap .carousel-item img {
+		width: 240px;
+		height: 158px;
+		float: left;
 	}
 
 /*今日热销区域结束*/
 
 /*楼层开始*/
 	.floor{
-		height: 400px;
-		background-color: green;
+		height: 538px;
+		margin-bottom: 10px;
+	}
+	.floor .floor-hd{
+		width: 100%;
+		height: 70px;
+		box-sizing: border-box;
+		border-bottom: 1px solid #ea675a;
+	}
+	.floor .floor-title{
+		margin-top: 22px;
+		height: 30px;
+		line-height: 30px;
+	}
+	.floor .floor-title .floor-title-num{
+		display: inline-block;
+		width: 24px;
+		height: 24px;
+		line-height: 24px;
+		background: #000;
+		color: #fff;
+		font-size: 14px;
+		text-align: center;
+		border-radius: 50%;
+		margin-right: 5px;
+	}
+	.floor .floor-title .floor-title-text{
+		font-size: 16px;
+		font-weight: bold;
+		position: relative;
+		top:2px;
+	}
+	.floor .tab-item-wrap{
+		margin-top: 10px;
+		height: 60px;
+		line-height: 60px;
+	}
+	.floor .tab-item-wrap .tab-item{
+		display: inline-block;
+		margin-right: 10px;
+	}
+	.floor .tab-item-wrap .tab-item:hover{
+		color: #ea675a;
+	}
+	.floor .tab-item-wrap .tab-item.tab-item-active{
+		background: url(../image/floor-arrow.png) no-repeat center bottom;
+		color: #ea675a;
+	}
+	.floor .tab-item-wrap .tab-divider{
+	    width: 1px;
+	    height: 20px;
+	    background: #ccc;
+	    margin-top: 20px;
+	    margin-right: 10px;
+	}
+	.floor .tab-panel{
+		display: none;
+	}
+	.floor .floor-item{
+		width: 200px;
+		height: 234px;
+		text-align: center;
+		cursor: pointer;
+	}
+	.floor .floor-item:hover{
+		box-shadow: 0px 5px 5px rgba(0,0,0,0.3);
+	}
+	.floor .floor-item .floor-item-pic{
+		margin-top: 24px;
+	}
+	.floor .floor-item .floor-item-name{
+		margin-top: 10px;
+	}
+	.floor .floor-item .floor-item-price{
+		margin-top: 10px;
+		color: #ff1414;
+		font-weight: bold;
+	}
+	.floor .container{
+		position: relative;
+		z-index: 2;
 	}
 
 /*楼层结束*/
