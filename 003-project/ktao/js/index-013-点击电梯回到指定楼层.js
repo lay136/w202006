@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-05-25 17:27:55
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-06-16 16:12:43
+* @Last Modified time: 2020-06-16 15:46:53
 */
 ;(function($){
 	//共通函数
@@ -425,16 +425,6 @@
 	})
 
 /*电梯逻辑--------------------结束*/
-
-/*工具条逻辑--------------------开始*/
-	var $toTop = $('#backToTop');
-	$toTop.on('click',function(){
-		$('html,body').animate({
-			scrollTop:0
-		})
-	})
-
-/*工具条逻辑--------------------结束*/
 
 
 

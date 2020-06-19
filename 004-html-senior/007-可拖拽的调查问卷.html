@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>007-可拖拽的调查问卷.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.page{
+			width: 1000px;
+			height: 500px;
+			margin: 50px auto;
+		}
+		#container{
+			float: left;
+			width: 500px;
+			height: 500px;
+			padding: 10px;
+			text-align:center;
+			box-sizing: border-box;
+		}
+		.drag-list{
+			float: left;
+			margin-top: 40px;
+			padding: 10px;
+			width: 500px;
+			height: 500px;
+			box-sizing: border-box;
+			border-left: 1px solid red;
+		}
+		.box{
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 8px;
+			border: 1px dashed #ccc;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+<body>
+	<div class="page">
+		<div id="container">
+			<h2>调查问卷</h2>
+		</div>
+		<div class="drag-list">
+			<div class="box" draggable=true>
+				<label for="">姓名:</label>
+				<input type="text" name="username">
+			</div>
+			<div class="box" draggable=true>
+				<label for="">年龄:</label>
+				<input type="text" name="age">
+			</div>
+			<div class="box" draggable=true>
+				<label for="">爱好:</label>
+				篮球<input type="checkbox">
+				羽毛球<input type="checkbox">
+				足球<input type="checkbox">
+			</div>
+		</div>
+	</div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	var tempDom = null;
+	$('.drag-list')
+	.on('dragstart','.box',function(ev){
+		tempDom = this;
+	})
+
+
+	$('#container')
+	.on('drop',function(ev){
+		// console.log(tempDom)
+		$('#container').append($(tempDom).clone());
+	})
+	.on('dragover',function(ev){
+		ev.preventDefault();
+	})
+</script>
+</html>

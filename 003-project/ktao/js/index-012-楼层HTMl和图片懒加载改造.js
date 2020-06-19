@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-05-25 17:27:55
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-06-16 16:12:43
+* @Last Modified time: 2020-06-16 10:57:50
 */
 ;(function($){
 	//共通函数
@@ -262,6 +262,45 @@
 /*今日热销区域逻辑--------------------结束*/
 
 /*楼层区域逻辑--------------------开始*/
+	//楼层图片懒加载
+	function floorHtmlLazyLoad($elem){
+		$elem.item = {};//{0:loaded,1:loaded}
+		$elem.totalLoadedNum = 0;
+		$elem.totalNum = $elem.find('.floor-img').length;
+		$elem.fnLoad = null;
+		//1.开始加载
+		$elem.on('tab-show',$elem.fnLoad = function(ev,index,elem){
+			if(!$elem.item[index]){
+				$elem.trigger('tab-load',[index,elem]);
+			}
+		})
+		//2.执行加载
+		$elem.on('tab-load',function(ev,index,elem){
+			var $this = $(elem);
+			var $imgs = $this.find('.floor-img');
+			$imgs.each(function(){
+				var $img = $(this);
+				var imgUrl = $img.data('src');
+				loadImg(imgUrl,function(imgUrl){
+					$img.attr('src',imgUrl);
+				},function(){
+					$img.attr('src','image/focus-carousel/placeholder.png');
+				});
+				//图片加载完毕
+				$elem.item[index] = 'loaded';
+				$elem.totalLoadedNum++;
+				//判断是否所有图片加载完毕,如果加载完毕则移出监听的事件
+				if($elem.totalLoadedNum == $elem.totalNum){
+					$elem.trigger('tab-loaded')
+				}
+			})
+			
+		})
+		//3.加载完毕
+		$elem.on('tab-loaded',function(){
+			$elem.off('tab-show',$elem.fnLoad);
+		})
+	}
 	//楼层HTML懒加载
 	function buildFloorHtml(oneFloorData){
 		var html = '';
@@ -315,6 +354,72 @@
 			html += '</div>';
 		return html;
 	}
+	/*
+	function floorImageLazyLoad(){
+		var item = {};//{0:loaded,1:loaded}
+		var totalLoadedNum = 0;
+		var totalNum = $floor.length;
+		var fnLoad = null;
+		//1.开始加载
+		$doc.on('floor-show',fnLoad = function(ev,index,elem){
+			if(!item[index]){
+				$doc.trigger('floor-load',[index,elem]);
+			}
+		})
+		//2.执行加载
+		$doc.on('floor-load',function(ev,index,elem){
+			// var $this = $(elem);
+			//1.加载数据
+			getDataOnce($doc,'data/floor/floorData.json',function(data){
+				var html = buildFloorHtml(data[index]);
+				// console.log(html)
+				//2.生成HTML结构并插入到楼层中
+				$(elem).html(html)
+				//3.实现楼层图片懒加载
+				// floorHtmlLazyLoad($(elem));
+				lazyLoad({
+					$elem:$(elem),
+					totalNum:$(elem).find('.floor-img').length,
+					eventName:'tab-show',
+					eventPrefix:'tab'
+				});
+				//图片懒加载:执行加载
+				$(elem).on('tab-load',function(ev,index,elem,success){
+					var $this = $(elem);
+					var $imgs = $this.find('.floor-img');
+					$imgs.each(function(){
+						var $img = $(this);
+						var imgUrl = $img.data('src');
+						loadImg(imgUrl,function(imgUrl){
+							$img.attr('src',imgUrl);
+						},function(){
+							$img.attr('src','image/focus-carousel/placeholder.png');
+						});
+						//加载成功执行函数
+						success()
+					})
+					
+				})
+				//4.激活选项卡
+				$(elem).tab({})
+
+			})
+			//HTML加载完毕
+			item[index] = 'loaded';
+			totalLoadedNum++;
+			//判断是否所有图片加载完毕,如果加载完毕则移出监听的事件
+			if(totalLoadedNum == totalNum){
+				$elem.trigger('tab-loaded')
+			}
+			
+		})
+		//3.加载完毕
+		$doc.on('floor-loaded',function(){
+			$doc.off('floor-show',fnLoad);
+		})
+	}
+	*/
+
 
 	//判断楼层是否进入到可视区 
 	function isVisible($elem){
@@ -324,6 +429,7 @@
 	var $floor = $('.floor');
 	var $win = $(window);
 	var $doc = $(document);
+	// floorImageLazyLoad();
 	lazyLoad({
 		$elem:$doc,
 		totalNum:$floor.length,
@@ -381,60 +487,6 @@
 	})
 
 /*楼层区域逻辑--------------------结束*/
-
-
-/*电梯逻辑--------------------开始*/
-	var $elevator = $('#elevator');
-	var $elevatorItems = $('.elevator-item');
-
-	//获取当前显示电梯号
-	function getElevator(){
-		var num = -1;
-		$floor.each(function(index,elem){
-			num = index;
-			if($(elem).offset().top > $win.scrollTop() + $win.height()/2){
-				num = index - 1;
-				return false;
-			}
-		})
-		return num;
-	}
-	//设置电梯
-	function setElevator(){
-		var num =	getElevator();
-		if(num == -1){
-			$elevator.fadeOut();
-		}else{
-			$elevator.fadeIn();
-			//移出所有class
-			$elevatorItems.removeClass('elevator-active');
-			//当前电梯选中状态
-			$elevatorItems.eq(num).addClass('elevator-active');
-		} 
-	}
-	$win.on('load resize scroll',function(){
-		clearTimeout($elevator.elevatorShowTimer);
-		$elevator.elevatorShowTimer = setTimeout(setElevator,200)
-	})
-	//事件代理监听点击电梯到达指定楼层
-	$elevator.on('click','.elevator-item',function(){
-		var index = $elevatorItems.index(this);
-		$('html,body').animate({
-			scrollTop:$floor.eq(index).offset().top
-		})
-	})
-
-/*电梯逻辑--------------------结束*/
-
-/*工具条逻辑--------------------开始*/
-	var $toTop = $('#backToTop');
-	$toTop.on('click',function(){
-		$('html,body').animate({
-			scrollTop:0
-		})
-	})
-
-/*工具条逻辑--------------------结束*/
 
 
 
