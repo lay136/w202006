@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>038-弹性布局案例2.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.father{
+			display: flex;
+			flex-wrap: wrap;
+			align-content: flex-start;
+
+
+			width: 400px;
+			height: 500px;
+			margin: 50px auto;
+			border: 1px solid #000;
+		}
+		.son{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			border: 1px solid #000;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+<body>
+	<div class="father">
+		<div class="son"></div>
+		<div class="son"></div>
+		<div class="son"></div>
+		<div class="son"></div>
+		<div class="son"></div>
+		<div class="son"></div>
+		<div class="son"></div>
+		<div class="son"></div>
+		<div class="son"></div>
+		<div class="son"></div>
+		<div class="son"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+/*
+	屏幕适配流程:
+	1.根据设计稿确定机型：以iphone6为例
+	2.设计稿给定具体像素值:width=150px;font-size=24px;
+	3.根据根元素计算:
+	1rem = 37.5px
+	4rem = 150px
+	0.64rem = 24px	
+
+	1rem = 32px
+	4.6875rem = 150px
+	0.75rem = 24px
+*/
+img {
+  float: left;
+  width: 4rem;
+  margin: 0.26666667rem 0.53333333rem 0.8rem 1.06666667rem;
+}
+p {
+  font-size: 0.64rem;
+}

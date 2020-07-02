@@ -1,0 +1,41 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+/*
+	屏幕适配流程:
+	1.根据设计稿确定机型：以iphone6为例
+	2.设计稿给定具体像素值:width=150px;font-size=24px;
+	3.根据根元素计算:
+	1rem = 37.5px
+	4rem = 150px
+	0.64rem = 24px	
+
+	1rem = 32px
+	4.6875rem = 150px
+	0.75rem = 24px
+*/
+@fs:37.5;
+
+.rem(@attr,@val1){
+	@{attr}:unit(@val1/@fs,rem);
+}
+.rem(@attr,@val1,@val2){
+	@{attr}:unit(@val1/@fs,rem) unit(@val2/@fs,rem);
+}
+.rem(@attr,@val1,@val2,@val3){
+	@{attr}:unit(@val1/@fs,rem) unit(@val2/@fs,rem) unit(@val3/@fs,rem);
+}
+.rem(@attr,@val1,@val2,@val3,@val4){
+	@{attr}:unit(@val1/@fs,rem) unit(@val2/@fs,rem) unit(@val3/@fs,rem) unit(@val4/@fs,rem);
+}
+
+img{
+	float: left;
+	.rem(width,150);
+	// .rem(margin,10,20);
+	.rem(margin,10,20,30,40)
+}
+p{
+	.rem(font-size,24)
+}

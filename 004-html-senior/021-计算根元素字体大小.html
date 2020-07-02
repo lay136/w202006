@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>021-计算根元素字体大小.html</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		/*
+			屏幕适配流程:
+			1.根据设计稿确定机型：以iphone6为例
+			2.设计稿给定具体像素值:width=150px;font-size=24px;
+			3.根据根元素计算:
+			1rem = 37.5px
+			4rem = 150px
+			0.64rem = 24px	
+
+			1rem = 32px
+			4.6875rem = 150px
+			0.75rem = 24px
+
+		*/
+		img{
+			float: left;
+			width: 4.6875rem;
+		}
+		p{
+			font-size: 0.75rem;
+		}
+	</style>
+</head>
+<body>
+	<img src="img/01.jpg" alt="">
+	<p>我是段落</p>
+</body>
+<script src="js/rem.js"></script>
+</html>

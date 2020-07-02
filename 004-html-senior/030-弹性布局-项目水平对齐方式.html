@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>030-弹性布局-项目水平对齐方式.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.father{
+			display: flex;
+	
+			/*justify-content: flex-start;*/
+			/*justify-content: flex-end;*/
+			/*justify-content: center;*/
+			/*justify-content: space-between;*/
+			justify-content: space-around;
+
+			width: 1000px;
+			margin: 50px auto;
+			border: 1px solid #000;
+		}
+		.father div{
+			font-size: 40px;
+			text-align:center;
+		}
+		.son1{
+			width: 200px;
+			height: 50px;
+			background-color: skyblue;
+		}
+		.son2{
+			width: 300px;
+			height: 50px;
+			background-color: pink;
+		}
+		.son3{
+			width: 400px;
+			height: 50px;
+			background-color: purple;
+		}
+	</style>
+</head>
+<body>
+	<div class="father">
+		<div class="son1">1</div>
+		<div class="son2">2</div>
+		<div class="son3">3</div>
+	</div>
+</body>
+</html>
