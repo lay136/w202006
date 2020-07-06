@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-04 16:39:56
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-06 15:17:40
+* @Last Modified time: 2020-07-06 17:06:06
 */
 const http = require('http');
 const path = require('path');
@@ -12,7 +12,7 @@ const url = require('url');
 const swig  = require('swig');
 const querystring = require('querystring');
 
-const { get,add } = require('./model/item.js');
+const { get,add,del } = require('./model/item.js');
 
 const server = http.createServer((req,res)=>{
 	// console.log('url:::',req.url);
@@ -70,6 +70,26 @@ const server = http.createServer((req,res)=>{
 					message:'添加任务失败'
 				}))
 			})
+		})
+	}
+	//处理删除路由
+	else if(pathname == '/del'){
+		//1.获取参数信息
+		const id = parse.query.id;
+		//2.根据参数信息中的ID删除文件中对应数据
+		del(id)
+		.then(data=>{
+			//3.返回删除信息
+			res.end(JSON.stringify({
+				code:0,
+				message:'删除任务成功'
+			}))
+		})
+		.catch(err=>{
+			res.end(JSON.stringify({
+				code:1,
+				message:'删除任务失败'
+			}))
 		})
 	}
 	//处理静态资源

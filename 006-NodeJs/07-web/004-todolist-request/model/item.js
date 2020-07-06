@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-06 10:36:55
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-06 15:15:54
+* @Last Modified time: 2020-07-06 17:04:08
 */
 const fs = require('fs');
 const path = require('path');
@@ -42,9 +42,22 @@ async function add(task){
 	return obj;
 }
 //删除数据
+async function del(id){
+	//1.读取数据
+	const data = await readfile(filepath,{flag:'r',encoding:'utf-8'})
+	//2.将数据转化成数组
+	const arr = JSON.parse(data);
+	//3.根据id筛选出数组中的数据
+	const newArr = arr.filter(item=>{
+		return item.id != id;
+	})
+	//4.将更新的数据覆盖写入到文件中
+	await writefile(filepath,JSON.stringify(newArr));
+}
 
 
 module.exports = {
 	get,
 	add,
+	del
 }
