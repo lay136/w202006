@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-14 10:54:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-14 16:51:28
+* @Last Modified time: 2020-07-14 17:41:02
 */
 ;(function($){
 	//1.登录注册面板切换
@@ -57,6 +57,8 @@
 		if(errMsg){
 			$err.html(errMsg);
 		}else{
+			$err.html('');
+			//发送ajax
 			$.ajax({
 				url:'/user/register',
 				type:'POST',
@@ -74,6 +76,49 @@
 				}else{
 					$err.html(data.message);
 				}
+			})
+			.fail(function(err){
+				$err.html('请求失败,请稍后再试!!');
+			})
+		}
+	})
+	//3.用户登录逻辑
+	$('#sub-login').on('click',function(){
+		//3.1 获取注册信息
+		var username = $userLogin.find("[name='username']").val();
+		var password = $userLogin.find("[name='password']").val();
+		var $err = $userLogin.find('.err');
+		var errMsg = ''
+		//3.2 验证数据合法性
+		//验证用户名
+		if(!usernameReg.test(username)){
+			errMsg = '用户名是以字母开头的3-10位包含数字字母和下划线'
+		}
+		//验证密码
+		else if(!passwordReg.test(password)){
+			errMsg = '密码是3-6位任意字符'
+		}
+		//验证通过
+		else{
+			errMsg = ''
+		}
+		//3.3 验证通过发送ajax请求
+		if(errMsg){
+			$err.html(errMsg);
+		}else{
+			$err.html('');
+			//发送ajax
+			$.ajax({
+				url:'/user/login',
+				type:'POST',
+				dataType:'json',
+				data:{
+					username:username,
+					password:password
+				}
+			})
+			.done(function(data){
+				console.log(data);
 			})
 			.fail(function(err){
 				$err.html('请求失败,请稍后再试!!');
