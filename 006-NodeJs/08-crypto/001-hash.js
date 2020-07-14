@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-07 10:58:07
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-07 11:03:59
+* @Last Modified time: 2020-07-07 11:32:17
 */
 const crypto = require('crypto');
 
@@ -17,3 +17,5 @@ console.log('123456')
 hash.update('123456');
 
 console.log(hash.digest('hex'))
+
+

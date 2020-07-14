@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ title }}</title>
+</head>
+<body>
+	<p>
+		{% if name == 'Leo' %}
+		 	hello Leo
+		{% else %}
+			hello Tom
+		{% endif %}
+	</p>
+	<p>
+		{% if age == 20 %}
+			20
+		{% elseif age == 88 %}
+			88
+		{% else %}
+			不告诉你
+		{% endif %}
+	</p>
+	<ul>
+		{% for key,val in friends %}
+			<li>{{ key }} -- {{ val }}</li>
+		{% endfor %}
+	</ul>
+</body>
+</html>
