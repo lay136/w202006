@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-14 10:54:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-14 17:41:02
+* @Last Modified time: 2020-07-16 11:01:50
 */
 ;(function($){
 	//1.登录注册面板切换
@@ -118,11 +118,36 @@
 				}
 			})
 			.done(function(data){
-				console.log(data);
+				if(data.code == 0){//登录成功
+					/*
+					$userInfo.find('span').html(data.user.username)
+					$userLogin.hide();
+					$userInfo.show();
+					*/
+					window.location.reload();
+				}else{//登录失败
+					$err.html(data.message);
+				}
 			})
 			.fail(function(err){
 				$err.html('请求失败,请稍后再试!!');
 			})
 		}
+	})
+
+	//4.用户退出
+	$('#logout').on('click',function(){
+		$.ajax({
+			url:'/user/logout',
+			type:'get'
+		})
+		.done(function(data){
+			if(data.code == 0){
+				window.location.href = '/';
+			}
+		})
+		.fail(function(err){
+			$userInfo.find('.err').html('请求失败,请稍后再试!!');
+		})
 	})
 })(jQuery)
