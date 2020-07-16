@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-14 10:54:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-16 11:01:50
+* @Last Modified time: 2020-07-16 16:39:38
 */
 ;(function($){
 	//1.登录注册面板切换
@@ -134,7 +134,7 @@
 			})
 		}
 	})
-
+	/*
 	//4.用户退出
 	$('#logout').on('click',function(){
 		$.ajax({
@@ -150,4 +150,6 @@
 			$userInfo.find('.err').html('请求失败,请稍后再试!!');
 		})
 	})
+	*/
+	
 })(jQuery)

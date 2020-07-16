@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-14 09:18:17
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-16 11:35:34
+* @Last Modified time: 2020-07-16 15:35:25
 */
 const express = require('express');
 const app = express();
@@ -11,6 +11,7 @@ const swig = require('swig');
 const bodyParser = require('body-parser');
 const Cookies = require('cookies');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 
 //处理静态资源
@@ -90,6 +91,8 @@ app.use(session({
     rolling:true,
     //cookie过期时间 1天
     cookie:{maxAge:1000*60*60*24},
+    //设置session存储在数据库中
+    store:new MongoStore({ mongooseConnection: mongoose.connection })  
 }))
 app.use('/',(req,res,next)=>{
 	req.userInfo = req.session.userInfo || {}
@@ -103,6 +106,7 @@ app.use('/',(req,res,next)=>{
 /*----------------配置路由开始----------------*/
 app.use('/',require('./routers/index.js'));
 app.use('/user',require('./routers/user.js'));
+app.use('/admin',require('./routers/admin.js'));
 /*----------------配置路由结束----------------*/
 
 

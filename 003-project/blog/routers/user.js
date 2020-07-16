@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-14 09:55:21
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-16 11:32:47
+* @Last Modified time: 2020-07-16 15:32:17
 */
 const express = require('express')
 const router = express.Router();
@@ -26,7 +26,8 @@ router.post('/register',(req,res)=>{
 			//3.验证通过插入数据
 			UserModel.insertMany({
 				username:username,
-				password:hmac(password)
+				password:hmac(password),
+				// isAdmin:true
 			})
 			.then(result=>{
 				res.json({
@@ -91,7 +92,9 @@ router.post('/login',(req,res)=>{
 //处理用户退出
 router.get('/logout',(req,res)=>{
 	//清除cookie
-	req.cookies.set('userInfo',null);
+	// req.cookies.set('userInfo',null);
+	req.session.destroy()
+
 	res.json({
 		code:0,
 		message:'退出成功'
