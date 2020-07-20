@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-14 09:18:17
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-16 15:35:25
+* @Last Modified time: 2020-07-18 11:01:22
 */
 const express = require('express');
 const app = express();
@@ -107,6 +107,8 @@ app.use('/',(req,res,next)=>{
 app.use('/',require('./routers/index.js'));
 app.use('/user',require('./routers/user.js'));
 app.use('/admin',require('./routers/admin.js'));
+app.use('/category',require('./routers/category.js'));
+app.use('/article',require('./routers/article.js'));
 /*----------------配置路由结束----------------*/
 
 

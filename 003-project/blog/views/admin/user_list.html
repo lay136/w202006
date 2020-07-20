@@ -6,7 +6,7 @@
 	欢迎来到用户管理中心
 {% endblock %}
 {% block content %}
-	<div class="table-responsive">
+	<div class="table-responsive content">
 	    <table class="table table-striped">
 	      <thead>
 	        <tr>
@@ -29,6 +29,7 @@
 	        {% endfor %}
 	      </tbody>
 	    </table>
-	  </div>
+	</div>
+	{% include './pagination.html' %}
 
 {% endblock %}

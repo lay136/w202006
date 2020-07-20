@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-14 10:54:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-16 16:39:38
+* @Last Modified time: 2020-07-20 15:57:53
 */
 ;(function($){
 	//1.登录注册面板切换
@@ -151,5 +151,92 @@
 		})
 	})
 	*/
+
+	//5.首页分页器逻辑
+	var $articlePage = $('#article-page');
+	function buildArticleHtml(articles){
+		var html = '';
+			articles.forEach(function(article){
+				var createdTime = moment(article.createdAt).format('YYYY - MM - DD HH:mm:ss')
+				html += `<div class="panel panel-default content-item">
+			          <div class="panel-heading">
+			            <h3 class="panel-title">
+			              <a href="/detail/${article._id.toString()}" class="link" target="_blank">${ article.title }</a>
+			            </h3>
+			          </div>
+			          <div class="panel-body">
+			            ${ article.intro }
+			          </div>
+			          <div class="panel-footer">
+			            <span class="glyphicon glyphicon-user"></span>
+			            <span class="panel-footer-text text-muted">${ article.user.username }</span>
+			            <span class="glyphicon glyphicon-th-list"></span>
+			            <span class="panel-footer-text text-muted">${ article.category.name }</span>
+			            <span class="glyphicon glyphicon-time"></span>
+			            <span class="panel-footer-text text-muted">${ createdTime }</span>
+			            <span class="glyphicon glyphicon-eye-open"></span>
+			            <span class="panel-footer-text text-muted"><em>${ article.click }</em>已阅读</span>
+			          </div>
+			        </div>`
+			})
+		 	
+		return html;
+	}
+	function buildPaginationHtml(page,list,pages){
+		var html = '';
+		html += '<ul class="pagination">';
+		if(page == 1){
+			html += `<li class="disabled">
+						<a href="javascript:;" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>`
+		}else{
+			html += `<li>
+				      <a href="javascript:;" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>`
+		}
+		list.forEach(function(i){
+			if(i == page){
+				html += `<li class="active"><a href="javascript:;">${ i }</a></li>`
+			}else{
+				html += `<li><a href="javascript:;">${ i }</a></li>`
+			}
+		})
+    	if(page == pages){
+    		html += `<li class="disabled">
+      					<a href="javascript:;" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>`
+    	}else{
+    		html += `<li>
+				      <a href="javascript:;" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>`
+    	}
+    	html += `</ul>`
+		return html;
+	}
+	//监听事件构建分页数据HTML结构
+	$articlePage.on('get-data',function(ev,data){
+		//构建首页文章列表结构
+		//构建文章列表
+		$('#article-wrap').html(buildArticleHtml(data.docs));
+		//构建分页器
+		if(data.pages > 1){
+			$('#article-page').html(buildPaginationHtml(data.page,data.list,data.pages))
+		}else{
+			$('#article-page').html('')
+		}
+		
+	})
+	$articlePage.pagination({
+		url:'/articles'
+	})
+
 	
 })(jQuery)

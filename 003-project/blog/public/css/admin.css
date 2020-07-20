@@ -2,10 +2,17 @@
 * @Author: Chen
 * @Date:   2020-07-16 16:13:31
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-16 16:15:22
+* @Last Modified time: 2020-07-18 16:00:33
 */
 #btn-admin{
 	float: right;
 	margin-top: 10px;
 	margin-right: 150px;
+}
+.content{
+	margin-top: 20px;
+	min-height: 300px;
+}
+.ck-content{
+	min-height: 200px;
 }
