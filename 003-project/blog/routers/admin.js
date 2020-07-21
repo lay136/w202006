@@ -2,12 +2,13 @@
 * @Author: Chen
 * @Date:   2020-07-14 09:55:21
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-17 16:34:39
+* @Last Modified time: 2020-07-21 16:34:53
 */
 const express = require('express')
 const router = express.Router();
 
 const UserModel = require('../models/user.js');
+const CommentModel = require('../models/comment.js');
 const hmac = require('../util/hmac.js');
 const pagination = require('../util/pagination.js');
 
@@ -103,6 +104,76 @@ router.get('/users',(req,res)=>{
 	})
 	.catch(err=>{
 		console.log(err)
+	})
+})
+
+//显示评论列表页面
+router.get('/comment',(req,res)=>{
+	//获取所有评论分页信息
+	CommentModel.getPaginationData(req)
+	.then(result=>{
+		res.render('admin/comment_list',{
+			userInfo:req.userInfo,
+			comments:result.docs,
+			page:result.page,
+			list:result.list,
+			pages:result.pages
+		})
+	})
+	.catch(err=>{
+		console.log(err)
+	})
+})
+//处理删除评论逻辑
+router.get('/comment/delete/:id',(req,res)=>{
+	//获取参数
+	const id = req.params.id;
+	//通过ID查找数据库并删除该条记录
+	CommentModel.deleteOne({_id:id})
+	.then(data=>{
+		res.render('admin/ok',{
+			userInfo:req.userInfo,
+			message:'删除评论成功',
+			url:'/admin/comment'
+		})
+	})
+	.catch(err=>{
+		console.log(err);
+		res.render('admin/err',{
+			userInfo:req.userInfo,
+			message:'操作数据库失败,请稍后再试!',
+			url:'/admin/comment'
+		})
+	})
+})
+
+//显示修改密码页面
+router.get('/password',(req,res)=>{
+	res.render('admin/password',{
+		userInfo:req.userInfo,
+	})
+})
+//处理更新密码路由
+router.post('/password',(req,res)=>{
+	const { password } = req.body;
+	//查询数据库更新密码
+	UserModel.updateOne({_id:req.userInfo._id},{password:hmac(password)})
+	.then(data=>{
+		//清除用户状态信息
+		req.session.destroy()
+		res.render('admin/ok',{
+			userInfo:req.userInfo,
+			message:'更新密码成功',
+			url:'/'
+		})
+	})
+	.catch(err=>{
+		console.log(err);
+		res.render('admin/err',{
+			userInfo:req.userInfo,
+			message:'操作数据库失败,请稍后再试!',
+			url:'/admin'
+		})
 	})
 })
 

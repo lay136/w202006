@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-14 10:54:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-20 15:57:53
+* @Last Modified time: 2020-07-21 15:21:35
 */
 ;(function($){
 	//1.登录注册面板切换
@@ -237,6 +237,40 @@
 	$articlePage.pagination({
 		url:'/articles'
 	})
+
+	//6.详情页分页逻辑
+	var $commentPage = $('#comment-page');
+	function buildCommentHtml(comments){
+		var html = '';
+		comments.forEach(function(comment){
+			var createdTime = moment(comment.createdAt).format('YYYY - MM - DD HH:mm:ss')
+			html += `<div class="panel panel-default">
+			          	 <div class="panel-heading">
+			              <h3 class="panel-title">${comment.user.username} 发布于 ${createdTime}</h3>
+			            </div>
+			            <div class="panel-body">
+			              ${comment.content}
+			            </div>
+			          </div>`
+		})
+		return html;
+	}
+	//监听事件构建分页数据HTML结构
+	$commentPage.on('get-data',function(ev,data){
+		//构建详情评论数据结构
+		$('#comment-wrap').html(buildCommentHtml(data.docs));
+		//构建分页器
+		if(data.pages > 1){
+			$('#comment-page').html(buildPaginationHtml(data.page,data.list,data.pages))
+		}else{
+			$('#comment-page').html('')
+		}
+		
+	})
+	$commentPage.pagination({
+		url:'/comment/list'
+	})
+
 
 	
 })(jQuery)

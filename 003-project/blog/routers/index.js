@@ -2,14 +2,15 @@
 * @Author: Chen
 * @Date:   2020-07-14 09:55:21
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-20 16:59:03
+* @Last Modified time: 2020-07-21 15:30:34
 */
 const express = require('express')
 const router = express.Router();
 const CategoryModel = require('../models/category.js');
 const ArticleModel = require('../models/article.js');
+const CommentModel = require('../models/comment.js');
 
-
+//获取首页共通数据
 async function getCommonData(){
 	//获取顶部分类数据
 	const getCategoriesDataPromise = CategoryModel.find({},'name').sort({_id:1});
@@ -117,11 +118,62 @@ router.get('/list/:id',(req,res)=>{
 		console.log(err)
 	})
 })
+
+//获取详情页数据
+async function getDetailData(req){
+	const id = req.params.id;
+	//获取共通数据
+	const getCommomDataPromise = getCommonData();
+	//获取文章详情数据
+	const getArticleDetailPromise = ArticleModel.findOneAndUpdate({_id:id},{$inc:{click:1}},{new:true})
+									.populate({ path: 'user', select: 'username' })
+									.populate({ path: 'category', select: 'name' })
+
+	//获取评论分页数据
+	const getCommentsDataPromise = CommentModel.getPaginationData(req,{article:id})
+
+
+	//为了保证详情文章中点击数和点击排行中点击数数据保持一致
+	//必须先获取文章更新后的数据再获取点击排行数据
+	const articleData = await getArticleDetailPromise;	
+
+	const commonData = await getCommomDataPromise;
+
+	const commentsData = await getCommentsDataPromise;
+
+	const { categoriesData,topArticles } = commonData;
+ 	return {
+		categoriesData,
+		topArticles,
+		articleData,
+		commentsData
+	}
+}
+
+
 //显示详情页
-router.get('/detail',(req,res)=>{
-	res.render('main/detail',{
-		userInfo:req.userInfo
+router.get('/detail/:id',(req,res)=>{
+	getDetailData(req)
+	.then(result=>{
+		const { categoriesData,topArticles,articleData,commentsData } = result;
+		res.render('main/detail',{
+			userInfo:req.userInfo,
+			categoriesData,
+			topArticles,
+			articleData,
+			//返回分页数据
+			comments:commentsData.docs,
+			page:commentsData.page,
+			list:commentsData.list,
+			pages:commentsData.pages,
+			//回传分类ID
+			currentCategoryId:articleData.category._id
+		})
 	})
+	.catch(err=>{
+		console.log(err);
+	})
+	
 })
 
 
