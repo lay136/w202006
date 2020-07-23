@@ -1,4 +1,4 @@
-./001-html/resource
+**/resource
 **/node_modules
 **/folder.ini
 *.mp4
