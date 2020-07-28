@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-24 15:14:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-27 10:42:05
+* @Last Modified time: 2020-07-27 10:03:00
 */
 import React,{ Component,Fragment } from 'react'
 import './App.css'
@@ -22,34 +22,27 @@ class App extends Component{
 	}
 	static getDerivedStateFromProps(props, state){
 		//一般就是通过props改变更新state数据
-		// console.log('getDerivedStateFromProps::props::',props)
-		// console.log('getDerivedStateFromProps::state::',state)
+		console.log('getDerivedStateFromProps::props::',props)
+		console.log('getDerivedStateFromProps::state::',state)
 		console.log('App static getDerivedStateFromProps(props, state)');
 		//返回的对象会和state进行合并并是生成新的state
-		return null
-	}
-	shouldComponentUpdate(nextProps, nextState){
-		//在这个生命周期函数内部决定是否向下更新数据
-		console.log('App shouldComponentUpdate(nextProps, nextState)::',nextProps, nextState);
 		/*
-		if(nextState.task == 'x'){
-			return false;
-		}else{
-			return true;
-		}
+			{
+				list:['吃饭','睡觉','敲代码'],
+				task:''
+			}
+			{
+				task:'xxx'
+			}
+			newState = {
+				list:['吃饭','睡觉','敲代码'],
+				task:'xxx'
+			}
 		*/
-		return true;
-		
-	}
-	getSnapshotBeforeUpdate(prevProps, prevState){
-		console.log('App getSnapshotBeforeUpdate(prevProps, prevState)::',prevProps, prevState);
-		return {
-			name:'Tom',
-			age:18
-		}
-	}
-	componentDidUpdate(prevProps, prevState,snapshot){
-		console.log('App componentDidUpdate(prevProps, prevState,snapshot):::',prevProps, prevState,snapshot)
+		// return {
+		// 	task:'xxx'
+		// }
+		return null
 	}
 	handleAdd(){
 		const list = [...this.state.list];
@@ -65,7 +58,7 @@ class App extends Component{
 		this.setState((preState)=>({
 			task:val
 		}),()=>{
-			// console.log(this.input)
+			console.log(this.input)
 		})
 	}
 	handleDel(index){
