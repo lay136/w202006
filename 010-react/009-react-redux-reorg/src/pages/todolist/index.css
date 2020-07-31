@@ -1,0 +1,48 @@
+/*
+* @Author: Chen
+* @Date:   2020-07-30 10:24:08
+* @Last Modified by:   Chen
+* @Last Modified time: 2020-07-30 10:24:25
+*/
+.Todolist{
+	width: 800px;
+	margin:50px auto;
+	overflow: hidden;
+}
+.input{
+	float: left;
+	width: 80%;
+	height: 40px;
+	font-size: 18px;
+	padding-left: 10px;
+	outline: none;
+	box-sizing: border-box;
+}
+.btn{
+	float: left;
+	width: 20%;
+	height: 40px;
+	font-size: 18px;
+	outline: none;
+	border:none;
+	box-sizing: border-box;
+}
+.list{
+	margin-top: 50px;
+	width: 100%;
+}
+.list li{
+	width: 100%;
+	height: 40px;
+	margin-top: 10px;
+	line-height: 40px;
+	padding-left: 10px;
+	font-size: 18px;
+	border-bottom:1px dashed #ccc;
+	border-left: 2px solid purple;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+li:hover{
+	background-color: #eee;
+}
