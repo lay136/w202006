@@ -2,7 +2,7 @@
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
 * @Last Modified by:   Chen
-* @Last Modified time: 2019-12-10 20:20:57
+* @Last Modified time: 2020-08-01 11:33:23
 */
 const Router = require('express').Router;
 
@@ -15,6 +15,7 @@ const hmac = require('../util/hmac.js')
 const router = Router();
 
 /*
+//管理员注册
 router.get('/init',(req,res)=>{
 	UserModel.insertMany({
 		username:'admin',
