@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-23 10:50:48
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-01 16:46:59
+* @Last Modified time: 2020-08-03 15:24:35
 */
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
@@ -32,6 +32,7 @@ module.exports = {
             pages:path.resolve(__dirname,'./src/pages'),
             util:path.resolve(__dirname,'./src/util'),
             common:path.resolve(__dirname,'./src/common'),
+            api:path.resolve(__dirname,'./src/api'),
         }
     },
 	module: {

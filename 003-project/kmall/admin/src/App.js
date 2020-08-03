@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-24 15:14:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-01 17:19:27
+* @Last Modified time: 2020-08-03 15:36:22
 */
 import React,{ Component,Fragment } from 'react'
 import './App.css'
@@ -21,13 +21,17 @@ import {
 
 import Home from 'pages/home/index.js';
 import Login from 'pages/login/index.js';
+import User from 'pages/user/index.js';
 import Err from 'common/err';
+
+import apiObj from 'api/index.js';
 
 
 
 //容器组件
 class App extends Component{
 	render(){
+		// console.log(apiObj)
 		const HomeRoute = ({ component: Component, ...rest }) => (
       		<Route 
       			{...rest} 
@@ -49,6 +53,7 @@ class App extends Component{
 	 			<div className="App">
 	 				<Switch>
 						<HomeRoute exact path="/" component={Home} />
+						<HomeRoute path="/user" component={User} />
 						<LoginRoute path="/login" component={Login} />
 						<Route component={Err} />
 					</Switch>

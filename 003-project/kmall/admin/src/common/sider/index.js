@@ -2,11 +2,15 @@
 * @Author: Chen
 * @Date:   2020-08-01 17:24:15
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-01 17:36:48
+* @Last Modified time: 2020-08-03 10:44:03
 */
 import React,{ Component,Fragment } from 'react'
 import './index.css'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd'
+import { 
+	Link ,
+	NavLink
+} from "react-router-dom"
 
 import AdminHeader from 'common/header'
 
@@ -19,27 +23,16 @@ class AdminSider extends Component{
 	render(){
  		return (
 			<div className="AdminSider">
-				<Sider width={200} style={{ background: '#fff' }}>
+				<Sider width={200} style={{ background: '#fff',minHeight:720 }}>
 			        <Menu
-			          mode="inline"
-			          defaultSelectedKeys={['1']}
-			          defaultOpenKeys={['sub1']}
 			          style={{ height: '100%', borderRight: 0 }}
 			        >
-							<SubMenu
-								key="sub1"
-								title={
-								  <span>
-								    <Icon type="user" />
-								    subnav 1
-								  </span>
-								}
-							>
-					            <Menu.Item key="1">option1</Menu.Item>
-					            <Menu.Item key="2">option2</Menu.Item>
-					            <Menu.Item key="3">option3</Menu.Item>
-					            <Menu.Item key="4">option4</Menu.Item>
-				    		</SubMenu>
+			            <Menu.Item key="1">
+			            	<NavLink exact to="/"><Icon type="home" />首页</NavLink>
+			            </Menu.Item>
+			            <Menu.Item key="2">
+			            	<NavLink to="/user"><Icon type="user" />用户列表</NavLink>
+			            </Menu.Item>
 				    </Menu>
 				</Sider>
 			</div>

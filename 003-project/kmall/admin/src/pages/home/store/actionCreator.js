@@ -2,44 +2,60 @@
 * @Author: Chen
 * @Date:   2020-07-28 10:35:29
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-28 16:42:40
+* @Last Modified time: 2020-08-03 15:43:41
 */
 import axios from 'axios'
+import { message } from 'antd'
+import apiObj from 'api/index.js'
+
 import {
-	CHNAGE_ITEM,
-	ADD_ITEM,
-	DEL_ITEM,
-	LOAD_DATA
+	SET_COUNTS
 } from './actionTypes.js'
 
-export const getChangeItemAction = (val)=>({
-	type:CHNAGE_ITEM,
-	payload:val
-})
-export const getAddItemAction = ()=>({
-	type:ADD_ITEM
-})
-export const getDelItemAction = (index)=>({
-	type:DEL_ITEM,
-	payload:index
-})
 
-export const getLoadDataAction = (data)=>({
-	type:LOAD_DATA,
+export const setCountsAction = (data)=>({
+	type:SET_COUNTS,
 	payload:data
 })
 
-export const getRequestLoadDataAction = ()=>{
+export const getCountsAction = ()=>{
 	return (dispatch,getState)=>{
-		//首先发送请求在生成action对象
-		axios.get('http://127.0.0.1:3000')
+		apiObj.getCounts()
 		.then(result=>{
 			// console.log(result)
-			//在这里真正派发action
-			dispatch(getLoadDataAction(result.data))
+			const data = result.data;
+			if(data.code == 0){//登录成功
+				//派发action将数据存到store中
+				dispatch(setCountsAction(data.data))
+			}else{//登录失败
+				message.error(data.message)
+			}
 		})
 		.catch(err=>{
 			console.log(err);
+			message.error('请求失败,请稍后再试!!')
 		})
+		/*
+		axios({
+			method: 'get',
+			url: 'http://127.0.0.1:3000/counts',
+			withCredentials:true
+		})
+		.then(result=>{
+			// console.log(result)
+			const data = result.data;
+			if(data.code == 0){//登录成功
+				//派发action将数据存到store中
+				dispatch(setCountsAction(data.data))
+			}else{//登录失败
+				message.error(data.message)
+			}
+		})
+		.catch(err=>{
+			console.log(err);
+			message.error('请求失败,请稍后再试!!')
+		})
+		*/
+
 	}
 }
