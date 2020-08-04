@@ -2,9 +2,12 @@
 * @Author: Chen
 * @Date:   2020-07-24 16:13:03
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-07-30 10:24:28
+* @Last Modified time: 2020-08-04 09:30:11
 */
 *{
 	margin: 0;
 	padding: 0;
+}
+.ant-table-body{
+	min-height: 400px;
 }

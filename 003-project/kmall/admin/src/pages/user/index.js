@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-24 15:14:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-03 17:48:39
+* @Last Modified time: 2020-08-04 10:18:01
 */
 import React,{ Component,Fragment } from 'react'
 import './index.css'
@@ -21,7 +21,6 @@ class User extends Component{
 		this.props.handlePage(1)
 	}
 	render(){
-		const { list } = this.props;
 		const columns = [
 			{
 				title: '用户名',
@@ -51,6 +50,7 @@ class User extends Component{
 				dataIndex: 'createdAt',
 			},
 		];
+		const { list,current,pageSize,total,handlePage,isFetching } = this.props;
 		const dataSource = list.map((item)=>{
 			// console.log(item)
 			return {
@@ -73,6 +73,15 @@ class User extends Component{
 						<Table 
 							columns={columns} 
 							dataSource={dataSource} 
+							loading={isFetching}
+							pagination={{
+								total:total,
+								pageSize:pageSize,
+								current:current
+							}}
+							onChange={(page)=>{
+								handlePage(page.current)
+							}}
 						/>
 					</div>
 				</AdminLayout>
@@ -84,7 +93,11 @@ class User extends Component{
 const mapStateToProps = (state)=>{
 	// console.log(state)
 	return {
-		list:state.get('user').get('list')
+		list:state.get('user').get('list'),
+		current:state.get('user').get('current'),
+		pageSize:state.get('user').get('pageSize'),
+		total:state.get('user').get('total'),
+		isFetching:state.get('user').get('isFetching'),
 	}
 }
 //将方法映射到组件

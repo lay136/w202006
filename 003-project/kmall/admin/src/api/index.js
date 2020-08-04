@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-08-03 15:16:41
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-03 17:43:17
+* @Last Modified time: 2020-08-04 09:27:24
 */
 //目标 导出一个对象:对象的属性就是方法名,值就是对应的方法
 import { SERVER,API_CONFIG } from 'api/config.js'
@@ -27,8 +27,16 @@ const request = (url,method,data)=>{
 		const options = {
 			method:method,
 			url:url,
-			data:data,
 			withCredentials:true
+		}
+		//携带参数
+		switch(method.toUpperCase()){
+			case 'GET':
+			case 'DELETE':
+				options.params = data;
+				break
+			default :
+				options.data = data;
 		}
 		axios(options)
 		.then(result=>{
