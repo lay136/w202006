@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-24 15:14:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-03 15:36:22
+* @Last Modified time: 2020-08-04 11:09:36
 */
 import React,{ Component,Fragment } from 'react'
 import './App.css'
@@ -22,6 +22,7 @@ import {
 import Home from 'pages/home/index.js';
 import Login from 'pages/login/index.js';
 import User from 'pages/user/index.js';
+import Category from 'pages/category/index.js';
 import Err from 'common/err';
 
 import apiObj from 'api/index.js';
@@ -54,6 +55,7 @@ class App extends Component{
 	 				<Switch>
 						<HomeRoute exact path="/" component={Home} />
 						<HomeRoute path="/user" component={User} />
+						<HomeRoute path="/category" component={Category} />
 						<LoginRoute path="/login" component={Login} />
 						<Route component={Err} />
 					</Switch>
