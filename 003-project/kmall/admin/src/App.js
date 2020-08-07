@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-24 15:14:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-04 11:09:36
+* @Last Modified time: 2020-08-07 17:02:41
 */
 import React,{ Component,Fragment } from 'react'
 import './App.css'
@@ -23,6 +23,7 @@ import Home from 'pages/home/index.js';
 import Login from 'pages/login/index.js';
 import User from 'pages/user/index.js';
 import Category from 'pages/category/index.js';
+import Product from 'pages/product/index.js';
 import Err from 'common/err';
 
 import apiObj from 'api/index.js';
@@ -50,12 +51,13 @@ class App extends Component{
         	/>
 		)
  		return (
- 			<Router>
+ 			<Router forceRefresh={true}>
 	 			<div className="App">
 	 				<Switch>
 						<HomeRoute exact path="/" component={Home} />
 						<HomeRoute path="/user" component={User} />
 						<HomeRoute path="/category" component={Category} />
+						<HomeRoute path="/product" component={Product} />
 						<LoginRoute path="/login" component={Login} />
 						<Route component={Err} />
 					</Switch>

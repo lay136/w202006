@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-24 15:14:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-04 17:01:06
+* @Last Modified time: 2020-08-06 11:06:31
 */
 import React,{ Component,Fragment } from 'react'
 import './index.css'
@@ -40,7 +40,7 @@ class CategoryAdd extends Component{
 		const { getFieldDecorator } = this.props.form
 		const { categories } = this.props
  		return (
-			<div className="User">
+			<div className="CategoryAdd">
 				<AdminLayout>
 					<Breadcrumb style={{ margin: '16px 0' }}>
 				        <Breadcrumb.Item>首页</Breadcrumb.Item>

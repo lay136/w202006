@@ -2,11 +2,11 @@
 * @Author: Chen
 * @Date:   2020-07-24 15:14:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-04 17:42:17
+* @Last Modified time: 2020-08-07 11:44:26
 */
 import React,{ Component,Fragment } from 'react'
 import './index.css'
-import { Breadcrumb,Table, Divider, Tag,Button } from 'antd'
+import { Breadcrumb,Table, Divider, Tag,Button,Input,InputNumber,Switch } from 'antd'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import moment from 'moment'
@@ -20,6 +20,9 @@ import AdminLayout from 'common/layout';
 
 //容器组件
 class CategoryList extends Component{
+	constructor(props){
+		super(props)
+	}
 	componentDidMount(){
 		this.props.handlePage(1)
 	}
@@ -28,23 +31,76 @@ class CategoryList extends Component{
 			{
 				title: '分类名称',
 				dataIndex: 'name',
+				width:"40%",
 				key: 'name',
-				render: name => <a>{name}</a>,
+				render: (name,record) => {
+					return (
+						<Input 
+							style={{width:"60%"}}
+							defaultValue={name}
+							onBlur={(ev)=>{
+								// console.log(record)
+								if(name != ev.target.value){
+									handleUpdateCategories(record._id,ev.target.value)
+								}
+							}}
+						/>
+					)
+				}
 			},
 			{
 				title: '手机分类',
 				dataIndex: 'mobileName',
+				width:"30%",
 				key: 'mobileName',
+				render: (mobileName,record) => {
+					return (
+						<Input 
+							defaultValue={mobileName}
+							style={{width:"60%"}}
+							onBlur={(ev)=>{
+								if(name != ev.target.value){
+									handleUpdateMobileName(record._id,ev.target.value)
+								}
+							}}
+						/>
+					)
+				}
 			},
 			{
 				title: '是否显示',
 				dataIndex: 'isShow',
 				key: 'isShow',
+				render:(isShow,record)=>{
+					return (
+						<Switch 
+							checkedChildren="显示" 
+							unCheckedChildren="隐藏" 
+							defaultChecked={isShow=='0' ? false : true}
+							onChange={(checked)=>{
+								const isShow = checked ? '1' : '0'
+								handleUpdateIsShow(record._id,isShow)
+							}}
+						/>
+					)
+				}
 			},
 			{
 				title: '排序',
 				key: 'order',
 				dataIndex: 'order',
+				render: (order,record) => {
+					return (
+						<InputNumber 
+							defaultValue={order}
+							onBlur={(ev)=>{
+								if(name != ev.target.value){
+									handleUpdateOrder(record._id,ev.target.value)
+								}
+							}}
+						/>
+					)
+				}
 			},
 		];
 		const { 
@@ -53,10 +109,14 @@ class CategoryList extends Component{
 			pageSize,
 			total,
 			handlePage,
-			isFetching 
+			isFetching ,
+			handleUpdateCategories,
+			handleUpdateMobileName,
+			handleUpdateOrder,
+			handleUpdateIsShow
 		} = this.props;
 		const dataSource = list.toJS()
-		console.log(dataSource)
+		// console.log(dataSource)
  		return (
 			<div className="CategoryList">
 				<AdminLayout>
@@ -104,7 +164,19 @@ const mapDispatchToProps = (dispatch)=>{
 	return {
 		handlePage:(page)=>{
 			dispatch(actionCreators.getPageAction(page))
-		}
+		},
+		handleUpdateCategories:(id,newName)=>{
+			dispatch(actionCreators.getUpdateCategoriesAction(id,newName))
+		},
+		handleUpdateMobileName:(id,newMobileName)=>{
+			dispatch(actionCreators.getUpdateMobileNameAction(id,newMobileName))
+		},
+		handleUpdateOrder:(id,newOrder)=>{
+			dispatch(actionCreators.getUpdateOrderAction(id,newOrder))
+		},
+		handleUpdateIsShow:(id,newIsShow)=>{
+			dispatch(actionCreators.getUpdateIsShowAction(id,newIsShow))
+		},
 	}
 }
 
