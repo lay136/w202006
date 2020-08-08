@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-24 15:14:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-08 11:39:07
+* @Last Modified time: 2020-08-08 15:10:57
 */
 import React,{ Component,Fragment } from 'react'
 import './index.css'
@@ -33,6 +33,15 @@ class ProductList extends Component{
 				title: '商品名称',
 				dataIndex: 'name',
 				key: 'name',
+				render:(name)=>{
+					if(keyword){
+						let reg = new RegExp(keyword,'ig');
+						let newName = name.replace(reg,'<b style="color:red;">'+keyword+'</b>');
+						return <div dangerouslySetInnerHTML={{__html: newName}} />
+					}else{
+						return name
+					}
+				}
 			},
 			{
 				title: '是否首页显示',
