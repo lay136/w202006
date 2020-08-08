@@ -2,14 +2,14 @@
 * @Author: Chen
 * @Date:   2020-07-28 10:35:29
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-07 16:53:50
+* @Last Modified time: 2020-08-08 11:36:26
 */
 import axios from 'axios'
 import * as types from './actionTypes.js'
 import { message } from 'antd'
 import apiObj from 'api'
 
-//处理新增商品
+//处理新增或者编辑商品
 const setMainImageErrAction = ()=>({
 	type:types.SET_MAIN_IMAGE_ERR,
 })
@@ -39,7 +39,13 @@ export const getSavePrductsAction = (err,values)=>{
 			return 
 		}
 		//验证通过,发送请求
-		apiObj.addProducts({
+		//判断是新增商品还是编辑商品:根据参数是否传递了ID
+		// console.log(values)
+		let request = apiObj.addProducts;
+		if(values.id){
+			request = apiObj.updateProducts
+		}
+		request({
 			...values,
 			mainImage,
 			images,
@@ -98,16 +104,21 @@ export const getProductsStartAction = ()=>({
 export const getProductsDoneAction = ()=>({
 	type:types.REQUEST_DONE_ACTION
 })
-export const getPageAction = (page)=>{
+export const getPageAction = (page,keyword)=>{
 	return (dispatch,getState)=>{
 		//发送请求之前显示loading状态
 		dispatch(getProductsStartAction())
-		apiObj.getProductsList({
+		const options = {
 			page:page
-		})
+		}
+		//判断是否有关键词检索
+		if(keyword){
+			options.keyword = keyword
+		}
+		apiObj.getProductsList(options)
 		.then(result=>{
 			const data = result.data;
-			// console.log(data)
+			console.log(data)
 			if(data.code == 0){//登录成功
 				dispatch(setPageAction(data.data))
 			}else{//登录失败

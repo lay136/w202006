@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-24 15:14:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-07 15:47:03
+* @Last Modified time: 2020-08-08 11:39:07
 */
 import React,{ Component,Fragment } from 'react'
 import './index.css'
@@ -17,6 +17,7 @@ import {
 import { actionCreators } from './store/index.js'
 
 import AdminLayout from 'common/layout';
+const { Search } = Input
 
 //容器组件
 class ProductList extends Component{
@@ -122,6 +123,7 @@ class ProductList extends Component{
 			current,
 			pageSize,
 			total,
+			keyword,
 			handlePage,
 			isFetching ,
 
@@ -131,7 +133,7 @@ class ProductList extends Component{
 			handleUpdateIsHot,
 		} = this.props;
 		const dataSource = list.toJS()
-		// console.log(dataSource)
+		// console.log(keyword)
  		return (
 			<div className="ProductList">
 				<AdminLayout>
@@ -141,6 +143,16 @@ class ProductList extends Component{
 				        <Breadcrumb.Item>商品列表</Breadcrumb.Item>
 				    </Breadcrumb>
 				    <div className="btn">
+				    	<Search 
+				    		style={{width:400}}
+					    	placeholder="请输入关键词" 
+					    	onSearch={
+					    		(value) => {
+					    			handlePage(1,value)
+					    		}
+					    	} 
+					    	enterButton 
+				    	/>
 				    	<Link to="/product/save"><Button type="primary btn-add">新增商品</Button></Link>
 				    </div>
 					<div className="content">
@@ -155,7 +167,11 @@ class ProductList extends Component{
 								current:current
 							}}
 							onChange={(page)=>{
-								handlePage(page.current)
+								if(keyword){
+									handlePage(page.current,keyword)
+								}else{
+									handlePage(page.current)
+								}
 							}}
 						/>
 					</div>
@@ -172,14 +188,15 @@ const mapStateToProps = (state)=>{
 		current:state.get('product').get('current'),
 		pageSize:state.get('product').get('pageSize'),
 		total:state.get('product').get('total'),
+		keyword:state.get('product').get('keyword'),
 		isFetching:state.get('product').get('isFetching'),
 	}
 }
 //将方法映射到组件
 const mapDispatchToProps = (dispatch)=>{
 	return {
-		handlePage:(page)=>{
-			dispatch(actionCreators.getPageAction(page))
+		handlePage:(page,keyword)=>{
+			dispatch(actionCreators.getPageAction(page,keyword))
 		},
 		handleUpdateIsShow:(id,newIsShow)=>{
 			dispatch(actionCreators.getUpdateIsShowAction(id,newIsShow))

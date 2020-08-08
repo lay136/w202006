@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-08-03 15:20:31
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-07 16:20:02
+* @Last Modified time: 2020-08-08 10:13:18
 */
 
 export const SERVER = 'http://127.0.0.1:3000';
@@ -30,4 +30,5 @@ export const API_CONFIG = {
 	updateProductsStatus: 		['/products/status','put'],
 	updateProductsIsHot: 		['/products/isHot','put'],
 	getProductDetail: 			['/products/detail','get'],
+	updateProducts: 			['/products','put'],
 }
