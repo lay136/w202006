@@ -2,7 +2,7 @@
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-03 16:12:30
+* @Last Modified time: 2020-08-11 09:47:30
 */
 const Router = require('express').Router
 
@@ -11,6 +11,7 @@ const hmac = require('../util/hmac.js')
 
 const router = Router();
 
+/*
 //用户退出
 router.get('/user',(req,res)=>{
 	req.session.destroy();
@@ -18,7 +19,7 @@ router.get('/user',(req,res)=>{
 		code:0,
 	})
 })
-
+*/
 
 //用户登录
 router.post("/users",(req,res)=>{

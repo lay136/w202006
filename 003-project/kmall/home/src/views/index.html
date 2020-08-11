@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Kmall 首页</title>
+	<%= require('html-loader!./common/meta.html') %>
+	<title>
+		<%= htmlWebpackPlugin.options.title %>
+	</title>
 </head>
 <body>
-	<p>index page</p>
-	<i class="fa fa-user"></i>
+	<%= require('html-loader!./common/nav.html') %>
+	<%= require('html-loader!./common/footer.html') %>
 </body>
 </html>

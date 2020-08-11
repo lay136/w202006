@@ -2,16 +2,17 @@
 * @Author: Chen
 * @Date:   2020-07-23 10:50:48
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-08 17:35:24
+* @Last Modified time: 2020-08-11 09:05:20
 */
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const getHtmlConfig = (name)=>({
+const getHtmlConfig = (name,title)=>({
     template:'./src/views/'+name+'.html',//模板文件
     filename:name+'.html',//输出的文件名
+    title:title,
     // inject:'head',//脚本写在那个标签里,默认是true(在body结束后)
     hash:true,//给生成的js/css文件添加一个唯一的hash
     chunks:['common',name]
@@ -25,9 +26,10 @@ module.exports = {
  	// 指定入口文件
  	//多入口写法:
 	entry: {
-		common:'./src/pages/common/index.js',
-		index:'./src/pages/index/index.js',
-		list:'./src/pages/list/index.js',
+		'common': 				'./src/pages/common/index.js',
+		'index': 				'./src/pages/index/index.js',
+		'user-login': 			'./src/pages/user-login/index.js',
+		'list': 				'./src/pages/list/index.js',
 	},
 	//指定出口文件
 	output: {
@@ -41,6 +43,8 @@ module.exports = {
         alias:{
             pages:path.resolve(__dirname,'./src/pages'),
             node_modules:path.resolve(__dirname,'./node_modules'),
+            util:path.resolve(__dirname,'./src/util'),
+            api:path.resolve(__dirname,'./src/api'),
         }
     },
 	module: {
@@ -86,8 +90,9 @@ module.exports = {
    	},
    	plugins:[
    		//自动生成HTML
-	    new htmlWebpackPlugin(getHtmlConfig('index')),
-	    new htmlWebpackPlugin(getHtmlConfig('list')),
+	    new htmlWebpackPlugin(getHtmlConfig('index','首页')),
+	    new htmlWebpackPlugin(getHtmlConfig('user-login','登录页')),
+	    new htmlWebpackPlugin(getHtmlConfig('list','列表页')),
 	    //自动清理dist目录
 	    new CleanWebpackPlugin(),
 	    //单独打包CSS文件资源
@@ -98,6 +103,10 @@ module.exports = {
 	devServer:{
 	    contentBase: './dist',//内容的目录
 	    port:3002,//服务运行的端口
-	    historyApiFallback:true,//h5路由刷新页面不向后台请求数据
+	    proxy: [{
+		  	context: ["/sessions"],
+		  	//请求地址是以context内部的值开头的路由全部代理到target提供的地址下
+		  	target: "http://127.0.0.1:3000",
+		}]
 	}
 }
