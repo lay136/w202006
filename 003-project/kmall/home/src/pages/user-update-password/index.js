@@ -2,14 +2,17 @@
 * @Author: Chen
 * @Date:   2020-08-08 15:42:54
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-13 10:41:38
+* @Last Modified time: 2020-08-13 11:30:46
 */
-require('pages/common/logo')
+require('pages/common/nav')
+require('pages/common/search')
+var _side = require('pages/common/side')
 require('pages/common/footer')
 require('./index.css');
 
 var _util = require('util');
 var api = require('api');
+var tpl = require('./index.tpl');
 
 var formDataMsg = {
 	show:function(msg){
@@ -27,7 +30,18 @@ var formDataMsg = {
 }
 var page = {
 	init:function(){
-		this.bindEvent();
+		//侧边栏选中状态
+		this.renderSide()
+		//绑定事件
+		this.bindEvent()
+		//获取登录用户信息判断用户是否登录
+		this.loadUserInfo()
+	},
+	renderSide:function(){
+		_side.render('user-update-password')
+	},
+	loadUserInfo:function(){
+		api.getUserInfo({})
 	},
 	bindEvent:function(){
 		var _this = this;
@@ -35,7 +49,7 @@ var page = {
 			_this.submit();
 		})
 		//监听键盘事件提交表单
-		$('input').on('keyup',function(ev){
+		$('.side-content input').on('keyup',function(ev){
 			if(ev.keyCode == 13){
 				_this.submit()
 			}
@@ -44,8 +58,8 @@ var page = {
 	submit:function(){
 		//1.获取数据
 		var formData = {
-			username:$.trim($('[name="username"]').val()),
 			password:$.trim($('[name="password"]').val()),
+			repassword:$.trim($('[name="repassword"]').val()),
 		}
 		//2.验证数据合法性
 		var validateFormData = this.validate(formData)
@@ -54,35 +68,19 @@ var page = {
 			//隐藏错误提示
 			formDataMsg.hide();
 			//发送ajax请求
-			api.login({
-				data:formData,
+			api.updatePassword({
+				data:{
+					password:formData.password
+				},
 				success:function(data){
-					window.location.href = _util.getParamsFromUrl('redirect') || '/'
+					//修改成功回到成功提示页
+					// window.location.href = '/result.html?type=updatePassword'
+					_util.goResult('updatePassword')
 				},
 				error:function(msg){
 					formDataMsg.show(msg);
 				}
 			})
-			/*
-			$.ajax({
-				url:'/sessions/users',
-				method:'post',
-				dataType:'json',
-				data:formData,
-				success:function(data){
-					// console.log(data)
-					if(data.code == 0){
-						window.location.href = '/'
-					}else{
-						formDataMsg.show(data.message);
-					}
-					
-				},
-				error:function(err){
-					formDataMsg.show('网络错误,请稍后再试!!');
-				}
-			})
-			*/
 		}else{
 			formDataMsg.show(validateFormData.msg);
 		}
@@ -91,16 +89,6 @@ var page = {
 		var result = {
 			status:false,
 			msg:''
-		}
-		//用户名非空验证
-		if(!_util.validate(formData.username,'required')){
-			result.msg = '请输入用户名'
-			return result
-		}
-		//用户名合法性验证
-		if(!_util.validate(formData.username,'username')){
-			result.msg = '用户名是以字母开始的3-6位字符'
-			return result
 		}
 		//密码非空验证
 		if(!_util.validate(formData.password,'required')){
@@ -112,9 +100,15 @@ var page = {
 			result.msg = '密码是3-6位任意字符'
 			return result
 		}
+		//验证两次密码一致
+		if(formData.password != formData.repassword){
+			result.msg = '两次密码输入不一致'
+			return result
+		}
 		result.status = true;
 		return result;
 	}
+
 }
 
 $(function(){

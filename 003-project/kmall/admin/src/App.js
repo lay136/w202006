@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-24 15:14:16
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-07 17:02:41
+* @Last Modified time: 2020-08-13 16:48:21
 */
 import React,{ Component,Fragment } from 'react'
 import './App.css'
@@ -24,6 +24,7 @@ import Login from 'pages/login/index.js';
 import User from 'pages/user/index.js';
 import Category from 'pages/category/index.js';
 import Product from 'pages/product/index.js';
+import Ad from 'pages/ad'
 import Err from 'common/err';
 
 import apiObj from 'api/index.js';
@@ -58,6 +59,7 @@ class App extends Component{
 						<HomeRoute path="/user" component={User} />
 						<HomeRoute path="/category" component={Category} />
 						<HomeRoute path="/product" component={Product} />
+						<HomeRoute path='/ad' component={Ad} />
 						<LoginRoute path="/login" component={Login} />
 						<Route component={Err} />
 					</Switch>

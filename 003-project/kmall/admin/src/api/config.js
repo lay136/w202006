@@ -2,12 +2,13 @@
 * @Author: Chen
 * @Date:   2020-08-03 15:20:31
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-08 10:13:18
+* @Last Modified time: 2020-08-13 16:49:53
 */
 
 export const SERVER = 'http://127.0.0.1:3000';
 export const UPLAOD_IMAGES = SERVER + '/products/images'
 export const UPLOAD_DETAIL_IMAGES = SERVER + '/products/detailImages'
+export const UPLOAD_AD_IMAGE = SERVER + '/ads/image'
 export const API_CONFIG = {
 	login: 						['/sessions/users','post'],
 	logout: 					['/sessions/users','delete'],
@@ -31,4 +32,11 @@ export const API_CONFIG = {
 	updateProductsIsHot: 		['/products/isHot','put'],
 	getProductDetail: 			['/products/detail','get'],
 	updateProducts: 			['/products','put'],
+	//广告api
+	getAdsList:                  	["/ads/list","get"],
+    getAdsDetail:                	["/ads/detail","get"],
+    addAds:                      	["/ads","post"],
+    updateAds:                  	["/ads","put"],
+    updateAdsOrder:              	["/ads/order","put"],
+    updateAdsIsShow:             	["/ads/isShow","put"],
 }
