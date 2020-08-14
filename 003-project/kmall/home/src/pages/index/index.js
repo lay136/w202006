@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-08-08 15:42:54
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-13 17:49:46
+* @Last Modified time: 2020-08-14 09:21:13
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -17,6 +17,7 @@ var api = require('api');
 var _util = require('util');
 var categoriesTpl = require('./categories.tpl');
 var adsTpl = require('./ads.tpl');
+var floorsTpl = require('./floors.tpl');
 
 var page = {
 	init:function(){
@@ -24,6 +25,8 @@ var page = {
 		this.loadHomeCategories()
 		//2.集成swiper并加载广告数据
 		this.loadSwiper()
+		//3.首页加载楼层
+		this.loadFloors();
 	},
 	loadHomeCategories:function(){
 		api.getHomeCategories({
@@ -69,6 +72,17 @@ var page = {
 			}
 		})
 		   
+	},
+	loadFloors:function(){
+		api.getHomeFloors({
+			success:function(floors){
+				// console.log(floors)
+				var html = _util.render(floorsTpl,{
+					floors:floors
+				})
+				$('.floor-wrap').html(html)
+			}
+		})
 	}
 }
 
