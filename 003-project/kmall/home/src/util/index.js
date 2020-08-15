@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-08-10 16:30:19
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-13 10:53:16
+* @Last Modified time: 2020-08-15 16:03:14
 */
 import Hogan from 'hogan.js';
 module.exports = {
@@ -33,6 +33,9 @@ module.exports = {
 	},
 	showErrMsg:function(msg){
 		alert(msg)
+	},
+	showConfirmMsg:function(msg){
+		return window.confirm(msg)
 	},
 	goLogin:function(){
 		window.location.href = '/user-login.html?redirect='+window.location.href;

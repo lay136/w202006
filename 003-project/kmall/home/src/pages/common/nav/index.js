@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-08-10 11:27:30
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-11 09:57:05
+* @Last Modified time: 2020-08-15 17:38:20
 */
 require('./index.css');
 var api = require('api')
@@ -14,6 +14,21 @@ var page = {
 		this.loadUsername()
 		//绑定事件
 		this.bindEvent()
+		//加载购物车数量
+		this.loadCarts()
+		// console.log(this);
+		// return this;
+	},
+	loadCarts:function(){
+		var $cartNum = $('.cart-num');
+		api.getCartsCount({
+			success:function(count){
+				$cartNum.text(count || 0)
+			},
+			error:function(){
+				$cartNum.text(0)
+			}
+		})
 	},
 	bindEvent:function(){
 		$('#logout').on('click',function(){
@@ -58,3 +73,4 @@ var page = {
 $(function(){
 	page.init()
 })
+module.exports = page

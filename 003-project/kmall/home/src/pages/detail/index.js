@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-08-08 15:42:54
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-14 17:29:48
+* @Last Modified time: 2020-08-15 11:36:44
 */
 require('pages/common/nav')
 require('pages/common/search')
@@ -53,6 +53,20 @@ var page = {
 				$input.val(current > 1 ? current -1 : 1 )
 			}
 		})
+		//3.添加购物车
+		this.detailBox.on('click','.add-cart-btn',function(){
+			var count = $('.count-input').val()
+			api.addCarts({
+				data:{
+					productId:_this.productsDetailParams.id,
+					count:count
+				},
+				success:function(result){
+					_util.goResult('addCart')
+				}
+			})
+		})
+
 	},
 	loadProductsDetail:function(){
 		var _this = this;
