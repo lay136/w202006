@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-23 10:50:48
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-15 11:03:44
+* @Last Modified time: 2020-08-17 15:16:00
 */
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
@@ -36,6 +36,7 @@ module.exports = {
 		'user-update-password': './src/pages/user-update-password/index.js',
 		'detail': 				'./src/pages/detail/index.js',
 		'cart': 				'./src/pages/cart/index.js',
+		'order-confirm': 		'./src/pages/order-confirm/index.js',
 	},
 	//指定出口文件
 	output: {
@@ -112,6 +113,7 @@ module.exports = {
 	    new htmlWebpackPlugin(getHtmlConfig('user-update-password','修改密码')),
 	    new htmlWebpackPlugin(getHtmlConfig('detail','商品详情')),
 	    new htmlWebpackPlugin(getHtmlConfig('cart','购物车')),
+	    new htmlWebpackPlugin(getHtmlConfig('order-confirm','订单确认页面')),
 	    //自动清理dist目录
 	    new CleanWebpackPlugin(),
 	    //单独打包CSS文件资源
@@ -131,6 +133,8 @@ module.exports = {
 		  		"/floors",
 		  		"/products",
 		  		"/carts",
+		  		"/orders",
+		  		"/shippings",
 		  	],
 		  	//请求地址是以context内部的值开头的路由全部代理到target提供的地址下
 		  	target: "http://127.0.0.1:3000",

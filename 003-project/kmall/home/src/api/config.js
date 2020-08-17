@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-08-03 15:20:31
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-15 17:04:59
+* @Last Modified time: 2020-08-17 15:45:06
 */
 const API_CONFIG = {
 	//登录注册
@@ -29,6 +29,10 @@ const API_CONFIG = {
 	updateCartsChoice: 			['/carts/choices','put'],
 	deleteCarts: 				['/carts','delete'],
 	updateCartsCounts: 			['/carts/counts','put'],
+	//订单确认页面
+	getOrdersList: 				['/orders/products','get'],
+	addShippings: 				['/shippings','post'],
+	getShippingsList: 			['/shippings/list','get'],
 }
 module.exports = {
 	API_CONFIG
