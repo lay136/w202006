@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-08-03 15:20:31
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-13 16:49:53
+* @Last Modified time: 2020-08-18 16:39:01
 */
 
 export const SERVER = 'http://127.0.0.1:3000';
@@ -39,4 +39,8 @@ export const API_CONFIG = {
     updateAds:                  	["/ads","put"],
     updateAdsOrder:              	["/ads/order","put"],
     updateAdsIsShow:             	["/ads/isShow","put"],
+    //订单api
+    getOrdersList:               	["/orders/list","get"],
+    getOrdersDetail:             	["/orders/detail","get"],
+    updateOrdersStatus:          	["/orders/status","put"],
 }

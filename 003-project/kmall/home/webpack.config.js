@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-07-23 10:50:48
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-17 15:16:00
+* @Last Modified time: 2020-08-18 15:47:50
 */
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
@@ -37,6 +37,9 @@ module.exports = {
 		'detail': 				'./src/pages/detail/index.js',
 		'cart': 				'./src/pages/cart/index.js',
 		'order-confirm': 		'./src/pages/order-confirm/index.js',
+		'payment': 				'./src/pages/payment/index.js',
+		'order-list': 			'./src/pages/order-list/index.js',
+		'order-detail': 		'./src/pages/order-detail/index.js',
 	},
 	//指定出口文件
 	output: {
@@ -114,6 +117,9 @@ module.exports = {
 	    new htmlWebpackPlugin(getHtmlConfig('detail','商品详情')),
 	    new htmlWebpackPlugin(getHtmlConfig('cart','购物车')),
 	    new htmlWebpackPlugin(getHtmlConfig('order-confirm','订单确认页面')),
+	    new htmlWebpackPlugin(getHtmlConfig('payment','支付页面')),
+	    new htmlWebpackPlugin(getHtmlConfig('order-list','订单列表')),
+	    new htmlWebpackPlugin(getHtmlConfig('order-detail','订单详情')),
 	    //自动清理dist目录
 	    new CleanWebpackPlugin(),
 	    //单独打包CSS文件资源
@@ -135,6 +141,7 @@ module.exports = {
 		  		"/carts",
 		  		"/orders",
 		  		"/shippings",
+		  		"/payments",
 		  	],
 		  	//请求地址是以context内部的值开头的路由全部代理到target提供的地址下
 		  	target: "http://127.0.0.1:3000",

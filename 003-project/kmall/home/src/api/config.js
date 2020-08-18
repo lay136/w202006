@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-08-03 15:20:31
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-17 15:45:06
+* @Last Modified time: 2020-08-18 16:30:22
 */
 const API_CONFIG = {
 	//登录注册
@@ -33,6 +33,17 @@ const API_CONFIG = {
 	getOrdersList: 				['/orders/products','get'],
 	addShippings: 				['/shippings','post'],
 	getShippingsList: 			['/shippings/list','get'],
+	deleteShippings: 			['/shippings','delete'],
+	getShippingsDetail: 		['/shippings/detail','get'],
+	updateShippingsDetail: 		['/shippings','put'],
+	addOrders: 					['/orders','post'],
+	//支付页面
+	getPayments: 				['/payments','get'],
+	getPaymentStatus: 			['/payments/status','get'],
+	//我的订单
+	getOrderList: 				['/orders/list','get'],
+	getOrderDetail: 		 	['/orders/detail','get'],
+	updateOrderStatus: 		 	['/orders/status','put'],
 }
 module.exports = {
 	API_CONFIG

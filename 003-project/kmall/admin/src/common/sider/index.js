@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-08-01 17:24:15
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-13 16:47:08
+* @Last Modified time: 2020-08-18 16:37:13
 */
 import React,{ Component,Fragment } from 'react'
 import './index.css'
@@ -42,6 +42,9 @@ class AdminSider extends Component{
 			            <Menu.Item key="5">
 			            	<NavLink to='/ad'><Icon type="fund" />广告管理</NavLink>
 			            </Menu.Item>
+			            <Menu.Item key="6">
+	                      	<NavLink to="/order"><Icon type="dollar" />订单管理</NavLink>
+	                    </Menu.Item>
 				    </Menu>
 				</Sider>
 			</div>

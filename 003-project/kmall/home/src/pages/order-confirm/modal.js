@@ -2,7 +2,7 @@
 * @Author: Chen
 * @Date:   2020-08-17 10:34:58
 * @Last Modified by:   Chen
-* @Last Modified time: 2020-08-17 16:16:09
+* @Last Modified time: 2020-08-17 17:20:02
 */
 var api = require('api');
 var _util = require('util');
@@ -25,7 +25,9 @@ var formDataMsg = {
 	}
 }
 module.exports = {
-	show:function(){
+	show:function(shipping){
+		//缓存编辑地址回传的数据
+		this.shipping = shipping;
 		this.modalBox = $('.modal-box');
 		//加载地址弹出层
 		this.loadModal();
@@ -39,7 +41,13 @@ module.exports = {
 		var provinces = _city.getProvinces();
 		var provincesSelectOptions = this.getSelectOption(provinces)
 		var provincesSelect = this.modalBox.find('.province-select');
-		provincesSelect.html(provincesSelectOptions)
+		provincesSelect.html(provincesSelectOptions);
+
+		//处理编辑地址
+		if(this.shipping){
+			provincesSelect.val(this.shipping.province)
+			this.loadCities(this.shipping.province)
+		}
 	},
 	loadCities:function(province){
 		//加载省份信息
@@ -47,6 +55,11 @@ module.exports = {
 		var citiesSelectOptions = this.getSelectOption(cities)
 		var citiesSelect = this.modalBox.find('.city-select');
 		citiesSelect.html(citiesSelectOptions)
+
+		//处理编辑地址
+		if(this.shipping){
+			citiesSelect.val(this.shipping.city)
+		}
 	},
 	getSelectOption:function(arr){
 		var html = '<option value="">请选择</option>'
@@ -56,7 +69,7 @@ module.exports = {
 		return html;
 	},
 	loadModal:function(){
-		var html = _util.render(modalTpl)
+		var html = _util.render(modalTpl,this.shipping)
 		this.modalBox.html(html)
 	},
 	bindEvent:function(){
@@ -107,7 +120,15 @@ module.exports = {
 			//隐藏错误提示
 			formDataMsg.hide();
 			//发送ajax请求
-			api.addShippings({
+			var request = api.addShippings
+			var action = '新增'
+			//处理编辑地址
+			if(_this.shipping){
+				request = api.updateShippingsDetail;
+				formData.id = _this.shipping._id
+				action = '编辑'
+			}
+			request({
 				data:formData,
 				success:function(data){
 					// console.log(data)
@@ -116,7 +137,7 @@ module.exports = {
 					//2.重新渲染地址列表
 					$('.shipping-box').trigger('get-shippings',[data])
 					//3.成功提示信息
-					_util.showSuccessMsg('新增地址成功')
+					_util.showSuccessMsg(action+'地址成功')
 				},
 				error:function(msg){
 					formDataMsg.show('新增地址失败,请稍后再试!!');
