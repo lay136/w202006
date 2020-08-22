@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>023-计算属性get和set方法.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<input v-model="fullName" type="text">
+		<p>firstName:::{{firstName}}</p>
+		<p>lastName:::{{lastName}}</p>
+		<p>fullName:::{{fullName}}</p>
+	</div>	
+</body>
+<script src="js/vue.js"></script>
+<script>
+	//vm 是 ViewModel的缩写
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			firstName:'Chen',
+			lastName:'Tom'
+		},
+		methods:{
+			
+		},
+		computed:{
+			fullName:{
+				get:function(){
+					return this.firstName+ ' ' + this.lastName
+				},
+				set:function(newSet){
+					// console.log(newSet)
+					var names = newSet.split(' ');
+					// console.log(names);
+					this.firstName = names[0];
+					this.lastName = names[names.length - 1];
+				}
+			}
+		}
+	})
+</script>
+</html>

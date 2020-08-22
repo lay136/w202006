@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>006-v-if.html</title>
+</head>
+<body>
+	<div id="app">
+		<input v-model="score" type="text">
+		<p>你的成绩是::{{score}}</p>
+		<p v-if="score >= 60">及格</p>
+		<p v-if="score < 60">不及格</p>
+	</div>	
+</body>
+<script src="js/vue.js"></script>
+<script>
+	//vm 是 ViewModel的缩写
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			score:90,
+		}
+	})
+</script>
+</html>

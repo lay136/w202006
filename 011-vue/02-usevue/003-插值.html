@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>003-插值.html</title>
+</head>
+<body>
+	<div id="app">
+		<p>{{message}}</p>
+		<p v-text="message"></p>
+		<p v-once>{{message}}</p>
+		<p>{{rewHtml}}</p>
+		<p v-text="rewHtml"></p>
+		<p v-once>{{rewHtml}}</p>
+		<p>{{rewHtml}}</p>
+		<p v-html="rewHtml"></p>
+	</div>	
+</body>
+<script src="js/vue.js"></script>
+<script>
+	//vm 是 ViewModel的缩写
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			message:'hello Vue',
+			rewHtml:'<h1>this is h</h1>'
+		}
+	})
+</script>
+</html>

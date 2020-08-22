@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>028-组件-模板分离-x-template.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<button-counter></button-counter>
+		<button-counter></button-counter>
+		<button-counter></button-counter>
+		
+	</div>	
+	<script type="text/x-template" id="button-counter">
+		<button v-on:click="count++">You clicked me {{ count }} times.</button>
+	</script>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	// 定义一个名为 button-counter 的新组件
+	//全局注册的行为必须在根 Vue 实例 (通过 new Vue) 创建之前发生
+	Vue.component('button-counter',{
+		//data必须是一个函数
+		data:function(){
+			return {
+				count:0
+			}
+		},
+		template:'#button-counter'
+	})
+
+	//vm 是 ViewModel的缩写
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			
+		},
+		
+	})
+</script>
+</html>

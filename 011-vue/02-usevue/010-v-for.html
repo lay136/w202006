@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>010-v-for.html</title>
+</head>
+<body>
+	<div id="app">
+		<table>
+			<tr>
+				<td>姓名:</td>
+				<td>年龄:</td>
+				<td>成绩:</td>
+				<td>是否及格:</td>
+			</tr>
+			<tr v-for="student in students">
+				<td>{{student.name}}</td>
+				<td>{{student.age}}</td>
+				<td>{{student.score}}</td>
+				<td v-if="student.score >= 60">及格</td>
+				<td v-else>不及格</td>
+			</tr>
+		</table>
+		
+	</div>	
+</body>
+<script src="js/vue.js"></script>
+<script>
+	//vm 是 ViewModel的缩写
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			students:[
+				{name:'Tom',age:18,score:88},
+				{name:'Leo',age:20,score:56},
+				{name:'Petter',age:22,score:99},
+			]
+		}
+	})
+</script>
+</html>

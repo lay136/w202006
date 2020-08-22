@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>020-v-on-其他修饰符-self.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#large-box{
+			width: 400px;
+			height: 400px;
+			background-color: red;
+			margin: 50px auto;
+			border: 1px solid #000;
+		}
+		#big-box{
+			width: 300px;
+			height: 300px;
+			background-color: green;
+			margin: 50px auto;
+			border: 1px solid #000;
+		}
+		#small-box{
+			width: 200px;
+			height: 200px;
+			background-color: blue;
+			margin: 50px auto;
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div id="large-box" @click="largeBox()">
+			<div id="big-box" @click.self="bigBox()">
+				<div id="small-box" @click="smallBox()"></div>
+			</div>
+		</div>
+	</div>	
+</body>
+<script src="js/vue.js"></script>
+<script>
+	//vm 是 ViewModel的缩写
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			count:0
+		},
+		methods:{
+			largeBox:function(){
+				console.log('click large box');	
+			},
+			bigBox:function(){
+				console.log('click big box');	
+			},
+			smallBox:function(){
+				console.log('click small box');	
+			},
+		}
+	})
+</script>
+</html>

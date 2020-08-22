@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>012-绑定属性-class.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		p{
+			margin-top: 10px;
+		}
+		.active{
+			background-color: yellow;
+		}
+		.error{
+			color:red;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<p>我是段落</p>
+		<p class="active error">我是段落</p>
+		<p :class="{active:true,error:false}">:class="{active:true,error:false}"</p>
+		<p :class="{active:isActive,error:isError}">:class="{active:isActive,error:isError}"</p>
+		<p :class="['active','error']">:class="['active','error']"</p>
+		<p :class="[{active:true},{error:false}]">:class="['active','error']"</p>
+		<p :class="arrClass">:class="arrClass"</p>
+		<p :class="objClass">:class="objClass"</p>
+	</div>	
+</body>
+<script src="js/vue.js"></script>
+<script>
+	//vm 是 ViewModel的缩写
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			isActive:false,
+			isError:true,
+			arrClass:['active','error'],
+			objClass:{active:false,error:false}
+		}
+	})
+</script>
+</html>

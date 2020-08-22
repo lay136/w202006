@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>022-计算属性基本使用.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<p>firstName:::{{firstName}}</p>
+		<p>lastName:::{{lastName}}</p>
+		<p>getFullName::{{getFullName()}}</p>
+		<p>fullName::{{fullName}}</p>
+	</div>	
+</body>
+<script src="js/vue.js"></script>
+<script>
+	//vm 是 ViewModel的缩写
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			firstName:'Chen',
+			lastName:'Tom'
+		},
+		methods:{
+			getFullName:function(){
+				return this.firstName + this.lastName
+			}
+		},
+		computed:{
+			fullName:function(){
+				return this.firstName + this.lastName
+			}
+		}
+	})
+</script>
+</html>
