@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>032-组件-多层组件传值-定义组件.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<todo-item
+			v-for="(item,index) in items"
+			:task="item.task"
+			:dateline="item.dateline"
+			:key="item.index"
+		>
+			
+		</todo-item>
+	</div>	
+	<template id="todo-item">
+		<div>
+			<task :task="task"></task>
+			<dateline :dateline="dateline"></dateline>	
+		</div>
+	</template>
+	<template id="task">
+		<span>{{tag}}{{ task }}</span>
+	</template>
+	<template id="dateline">
+		<span>{{tag}}{{ dateline }}</span>
+	</template>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	//1.定义组件
+	var TodoItem = Vue.extend({
+		data:function(){
+			return {
+				
+			}
+		},
+		template:'#todo-item',
+		props:{
+			task:String,
+			dateline:String
+		},
+
+	})
+	var Task = Vue.extend({
+		data:function(){
+			return {
+				tag:'任务::'
+			}
+		},
+		template:'#task',
+		props:{
+			task:String
+		}
+	})
+	var DateLine = Vue.extend({
+		data:function(){
+			return {
+				tag:'截止时间::'
+			}
+		},
+		template:'#dateline',
+		props:{
+			dateline:String
+		}
+	})
+	//2.注册组件
+	Vue.component('todo-item',TodoItem);
+	Vue.component('task',Task);
+	Vue.component('dateline',DateLine);
+
+	//vm 是 ViewModel的缩写
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			items:[
+				{
+					task:'学习Vue',
+					dateline:'今天晚上'
+				},
+				{
+					task:'学习React',
+					dateline:'明天早上'
+				},
+			]
+		},
+	})
+</script>
+</html>

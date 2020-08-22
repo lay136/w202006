@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>038-组件-动态组件-重写.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		button{
+			width: 50px;
+			height: 30px;
+		}
+		.article-wrap{
+			display: flex;
+			flex-direction: row;
+		}
+		.active{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<button
+			v-for="(item,index) in tabs"
+			@click="currentTab = item"
+		>
+			{{item}}
+		</button>
+		
+		<keep-alive>
+			<component :is="currentComponent"></component>
+		</keep-alive>
+	</div>	
+	<template id="tab-home">
+		<p>home page</p>
+	</template>
+	<template id="tab-article">
+		<div class="article-wrap">
+			<ul>
+				<li 
+					v-for="(article,index) in articles"
+					:key="article.index"
+					@click="selectArticle = article"
+					:class="{active:selectArticle == article}"
+				>
+					{{article.title}}	
+				</li>
+			</ul>
+			<div>
+				<div v-if="selectArticle">
+					{{selectArticle.content}}
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="tab-list">
+		<p>list page</p>
+	</template>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	//1.定义组件
+	var Home = Vue.extend({
+		data:function(){
+			return {
+				
+			}
+		},
+		template:'#tab-home'
+	})
+	var Article = Vue.extend({
+		data:function(){
+			return {
+				articles:[
+					{
+						title:'学习Vue',
+						content:'vue的入门到精通'
+					},
+					{
+						title:'学习React',
+						content:'React的入门到精通'
+					},
+				],
+				selectArticle:null
+			}
+		},
+		template:'#tab-article'
+	})
+	var List = Vue.extend({
+		data:function(){
+			return {
+				
+			}
+		},
+		template:'#tab-list'
+	})
+	//2.注册组件
+	Vue.component('tab-home',Home)
+	Vue.component('tab-article',Article)
+	Vue.component('tab-list',List)
+
+	//vm 是 ViewModel的缩写
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			currentTab:'home',
+			tabs:['home','article','list']
+		},
+		computed:{
+			currentComponent:{
+				get:function(){
+					return 'tab-'+this.currentTab;
+				}
+			}
+		}
+	})
+</script>
+</html>

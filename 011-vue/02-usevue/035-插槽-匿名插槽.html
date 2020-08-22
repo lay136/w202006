@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>035-插槽-匿名插槽.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<layout>
+			列表主体内容区域
+		</layout>	
+	</div>	
+	<!-- template 需要定义在 Vue 所属的 DOM 元素外。 -->
+	<template id="layout">
+		<div>
+			<div>顶部导航</div>
+			<slot>主体搜索区域</slot>
+			<slot>主体内容区域</slot>
+			<div>底部导航</div>
+		</div>
+	</template>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	Vue.component('layout',{
+		//data必须是一个函数
+		data:function(){
+			return {
+				
+			}
+		},
+		template:'#layout'
+	})
+
+	//vm 是 ViewModel的缩写
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			
+		},
+	})
+</script>
+</html>

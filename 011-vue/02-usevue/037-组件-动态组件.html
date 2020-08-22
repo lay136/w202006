@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>037-组件-动态组件.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<button @click="currentComponent = 'tab-home'">tab-home</button>
+		<button @click="currentComponent = 'tab-article'">tab-article</button>
+		<button @click="currentComponent = 'tab-list'">tab-list</button>
+
+		<component :is="currentComponent"></component>
+	</div>	
+	<template id="tab-home">
+		<p>home page</p>
+	</template>
+	<template id="tab-article">
+		<p>article page</p>
+	</template>
+	<template id="tab-list">
+		<p>list page</p>
+	</template>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	//1.定义组件
+	var Home = Vue.extend({
+		data:function(){
+			return {
+				
+			}
+		},
+		template:'#tab-home'
+	})
+	var Article = Vue.extend({
+		data:function(){
+			return {
+				
+			}
+		},
+		template:'#tab-article'
+	})
+	var List = Vue.extend({
+		data:function(){
+			return {
+				
+			}
+		},
+		template:'#tab-list'
+	})
+	//2.注册组件
+	Vue.component('tab-home',Home)
+	Vue.component('tab-article',Article)
+	Vue.component('tab-list',List)
+
+	//vm 是 ViewModel的缩写
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			currentComponent:'tab-home'
+		},
+		
+	})
+</script>
+</html>
