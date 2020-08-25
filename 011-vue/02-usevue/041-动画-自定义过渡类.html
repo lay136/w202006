@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>041-动画-自定义过渡类.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+	<!-- <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css"> -->
+	<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+  />
+</head>
+<body>
+	<div id="app">
+		<button @click="isShow = !isShow">切换</button>
+		<transition 
+			name="custom-classes-transition" 
+			appear
+			enter-active-class="animate__animated animate__bounce"
+   	 		leave-active-class="animate__animated animate__fadeOut"
+		>
+			<p v-if="isShow">文字</p>
+		</transition>
+	</div>	
+	
+</body>
+<script src="js/vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			isShow:true
+		},
+	})
+</script>
+</html>

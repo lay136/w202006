@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>045-过滤器-局部.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="app1">
+		<p v-bind:title="price | priceFormat">价格::{{price | priceFormat}}</p>
+	</div>	
+	<div id="app2">
+		<p :title="price | priceFormat">价格::{{price | priceFormat}}</p>
+	</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	Vue.filter('priceFormat',function(price){
+		return '￥' + price.toFixed(4)
+	})
+
+	var vm1 = new Vue({
+		el:'#app1',
+		data:{
+			price:10
+		},
+		filters:{
+			priceFormat:function(price){
+				return '￥' + price.toFixed(2)
+			}
+		}
+	})
+	var vm2 = new Vue({
+		el:'#app2',
+		data:{
+			price:88
+		},
+	})
+</script>
+</html>

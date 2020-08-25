@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>040-动画-列表动画.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.todolist{
+			width: 400px;
+			margin: 100px auto;
+		}
+		input{
+			padding-left: 8px;
+			box-sizing: border-box;
+			width: 80%;
+			height: 34px;
+			outline: none;
+		}
+		button{
+			width: 20%;
+			height: 34px;
+		}
+		li{
+			margin-top: 10px;
+			list-style: none;
+			width: 100%;
+			height: 34px;
+			line-height: 34px;
+			border: 1px dashed #ccc;
+		}
+		/*过渡类*/
+		.list-item {
+		  	display: inline-block;
+		  	margin-right: 10px;
+		}
+		.list-enter-active, .list-leave-active {
+		  	transition: all 1s;
+		}
+		.list-enter, .list-leave-to{
+		  	opacity: 0;
+		  	transform: translateY(30px);
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div class="todolist">
+			<input type="text" v-model="task"><button
+				@click="handleAdd()"
+			>新增</button>
+			<transition-group name="list" appear tag="ul">
+				<li
+					v-for="(item,index) in tasks"
+					:key="''+index"
+					@click="handleDel(index)"
+				>
+					{{item}}
+				</li>
+			</transition-group>	
+		</div>
+	</div>	
+	
+</body>
+<script src="js/vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			task:'',
+			tasks:['吃饭','学习','敲代码']
+		},
+		methods:{
+			handleAdd:function(){
+				this.tasks.push(this.task)
+				this.task = ''
+			},
+			handleDel:function(index){
+				this.tasks.splice(index,1);
+			}
+		}
+	})
+</script>
+</html>
