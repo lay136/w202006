@@ -12,6 +12,7 @@
 </template>
 
 <script>
+	import { DEL_TODO } from '../store/types.js'
 	export default {
 		name:'Item',
 		data(){
@@ -23,7 +24,6 @@
 		props:{
 			todo:Object,
 			index:Number,
-			delTodo:Function
 		},
 		methods:{
 			handleShow(flag){
@@ -32,7 +32,7 @@
 			},
 			handleDel(){
 				if(window.confirm('您确定要删除该任务吗?')){
-					this.delTodo(this.index)
+					this.$store.dispatch(DEL_TODO,this.index)
 				}
 			}
 		}
@@ -48,20 +48,11 @@
 		border: 1px dashed #ccc;
 		box-sizing: border-box;
 	}
-	/*
-	#Item:hover{
-		background-color: #ccc;
-	}
-	#Item:hover button{
-		display: block;
-	}
-	*/
+	
 	#Item input{
-		/*vertical-align: middle;*/
 		margin-right: 8px;
 	}
 	#Item button{
-		/*display: none;*/
 		float: right;
 		margin-top: 4px;
 	}

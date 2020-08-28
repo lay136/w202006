@@ -10,6 +10,8 @@
 </template>
 
 <script>
+	import { ADD_TODO } from '../store/types.js'
+
 	export default {
 		name:'Header',
 		data(){
@@ -31,14 +33,11 @@
 					tag:false
 				}
 				//3.将任务对象添加到目标数组
-				this.addTodo(todo)
+				this.$store.dispatch(ADD_TODO,todo)
 				//4.清空输入框值
 				this.task = '';
 			}
 		},
-		props:{
-			addTodo:Function
-		}
 	}
 </script>
 

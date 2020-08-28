@@ -7,40 +7,39 @@
 </template>
 
 <script>
+	import { SELECT_ALL_TODO,DELETE_ALL_TODO } from '../store/types.js'
+	import { mapGetters } from 'vuex'
 	export default {
 		name:'Footer',
 		computed:{
+			/*
 			total:function(){
-				return this.todos.length
+				return this.$store.getters.total
 			},
 			selectTodo:function(){
-				return this.todos.reduce((total,item)=>{
-					if(item.tag){
-						total = total + 1;
-					}
-					return total;
-				},0)
+				return this.$store.getters.selectTodo
 			},
+			*/
+			// 使用对象展开运算符将 getter 混入 computed 对象中
+			...mapGetters([
+				'total',
+				'selectTodo'
+			]),
 			allTodo:{
 				get(){
-					return (this.total == this.selectTodo) && (this.total !=0)
+					return this.$store.getters.allTodo
 				},
 				set(value){
-					this.selectAllTodo(value)
+					this.$store.dispatch(SELECT_ALL_TODO,value)
 				}
 			}
 		},
 		methods:{
 			handleSelectTodo(){
 				if(window.confirm('你确定要删除选中的任务吗?')){
-					this.deleteSelectTodo();
+					this.$store.dispatch(DELETE_ALL_TODO)
 				}
 			}
-		},
-		props:{
-			todos:Array,
-			selectAllTodo:Function,
-			deleteSelectTodo:Function
 		},
 	}
 </script>
