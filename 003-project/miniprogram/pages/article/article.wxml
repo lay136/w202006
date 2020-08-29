@@ -12,7 +12,7 @@
             <image class="swiper-image" src="/images/swiper/s3.jpg"></image>
         </swiper-item>
     </swiper>
-    <view class='article-wrap'>
+    <!-- <view class='article-wrap'>
         <view class='article-item'>
             <view class='article-head'>
             <image class='article-head-avatar' src='/images/avatar/u1.jpg'></image>
@@ -43,5 +43,34 @@
             <text class='article-footer-text'>30</text> 
             </view>
         </view>
+    </view> -->
+    <!-- <view>{{text}}</view> -->
+    <!-- <view wx:for="{{arr}}">
+        {{index}}: {{item.message}}
+    </view> -->
+    <!-- <view wx:for="{{arr}}" wx:for-index="idx" wx:for-item="itemName">
+    {{idx}}: {{itemName.message}}
+    </view> -->
+    <!-- <block wx:for="{{arr}}" wx:for-index="idx" wx:for-item="itemName">
+    {{idx}}: {{itemName.message}}
+    </block> -->
+    <view class='article-wrap'>
+        <block wx:for="{{articles}}" wx:for-index="idx" wx:for-item="article" wx:key="idx">
+            <view class='article-item'>
+                <view class='article-head'>
+                <image class='article-head-avatar' src='{{article.avatar}}'></image>
+                <text class='article-head-date'>{{article.author}} 发表于{{article.time}}</text>
+                </view>
+                <text class='article-title'>{{article.title}}</text>
+                <image class='article-img' src='{{article.mainImage}}'></image>
+                <text class='article-desc'>{{article.desc}}</text>
+                <view class='article-footer'>
+                <image class='article-footer-icon' src='/images/icon/star.png'></image>
+                <text class='article-footer-text'>{{article.star}}</text>
+                <image class='article-footer-icon' src='/images/icon/view.png'></image>
+                <text class='article-footer-text'>{{article.view}}</text> 
+                </view>
+            </view>
+        </block>
     </view>
 </view>

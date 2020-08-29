@@ -9,7 +9,8 @@
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fabda0",
     "navigationBarTitleText": "跨猪",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh":true
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
