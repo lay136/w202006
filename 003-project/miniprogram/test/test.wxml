@@ -1,0 +1,32 @@
+<view class='article-wrap'>
+    <view class='article-item'>
+        <view class='article-head'>
+        <image class='article-head-avatar' src='/images/article/a1.jpg'></image>
+        <text class='article-head-date'>2天前</text>
+        </view>
+        <text class='article-title'>文章1</text>
+        <image class='article-img' src='/images/avatar/u1.jpg'></image>
+        <text class='article-desc'>我是文章1内容</text>
+        <view class='article-footer'>
+        <image class='article-footer-icon' src='/images/icon/star.png'></image>
+        <text class='article-footer-text'>20</text>
+        <image class='article-footer-icon' src='/images/icon/view.png'></image>
+        <text class='article-footer-text'>30</text> 
+        </view>
+    </view>
+    <view class='article-item'>
+        <view class='article-head'>
+        <image class='article-head-avatar' src='/images/article/a2.jpg'></image>
+        <text class='article-head-date'>2天前</text>
+        </view>
+        <text class='article-title'>文章2</text>
+        <image class='article-img' src='/images/avatar/u2.jpg'></image>
+        <text class='article-desc'>我是文章2内容</text>
+        <view class='article-footer'>
+        <image class='article-footer-icon' src='/images/icon/star.png'></image>
+        <text class='article-footer-text'>20</text>
+        <image class='article-footer-icon' src='/images/icon/view.png'></image>
+        <text class='article-footer-text'>30</text> 
+        </view>
+    </view>
+  </view>

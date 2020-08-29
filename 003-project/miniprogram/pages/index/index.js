@@ -42,13 +42,36 @@ Page({
         }
       })
     }
+
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+  /*
+  tapView:function(){
+    console.log('tapView ...');
+  },
+  tapText:function(){
+    console.log('tapText ...');
+  },
+  catchView:function(){
+    console.log('catchView ...');
+    
+  },
+  catchText:function(){
+    console.log('catchText ...');
+    
   }
+  */
+ tapMotto:function(){
+   //点击跳转页面
+   /*
+   wx.redirectTo({
+    url:'/pages/article/article'
+  })
+  */
+   wx.navigateTo({
+     url:'/pages/article/article'
+   })
+   
+  
+ }
+  
 })
