@@ -1,39 +1,20 @@
-// pages/article/article.js
+var { articles } = require('../../db/index.js')
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        articles:[
-            {
-                author:'Tom',
-                avatar:'/images/avatar/u1.jpg',
-                time:'10天前',
-                title:'我是文章的标题111',
-                mainImage:'/images/article/a1.jpg',
-                desc:'我是文章描述111',
-                star:20,
-                view:30
-            },
-            {
-                author:'Tom',
-                avatar:'/images/avatar/u2.jpg',
-                time:'3天前',
-                title:'我是文章的标题222',
-                mainImage:'/images/article/a2.jpg',
-                desc:'我是文章描述222',
-                star:20,
-                view:30
-            }
-        ]
+        articles:[]
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        // console.log('article onLoad ...')
+        // 页面加载完毕发送请求获取数据
+        this.setData({articles:articles})
     },
 
     /**
@@ -92,4 +73,14 @@ Page({
         // 页面尺寸变化时执行
         // console.log('article onResize ...')
     },
+    /**
+     * 点击跳转文章详情
+     */
+    tapArticleDetail:function(ev){
+        // console.log(ev.currentTarget.dataset);
+        var articleId = ev.currentTarget.dataset.articleId
+        wx.navigateTo({
+          url: '/pages/article/article-detail/article-detail?articleId='+articleId,
+        })
+    }
 })
